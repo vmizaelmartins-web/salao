@@ -75,7 +75,7 @@ export default function Home() {
           <div className="relative z-10">
 
             <p className="mb-6 text-xs tracking-[0.4em] text-[#C98A8A]">
-              KAREN SALLA DESIGNER
+              Karen Salla Studio
             </p>
 
             <h1 className="max-w-3xl text-5xl font-light leading-[1.05] tracking-tight md:text-7xl">
@@ -597,7 +597,7 @@ export default function Home() {
         <div className="mx-auto mt-16 max-w-7xl border-t border-white/10 pt-8">
 
           <p className="text-center text-xs text-white/25">
-            © {new Date().getFullYear()} Karen Salla Designer. Todos os
+            © {new Date().getFullYear()} Karen Salla Studio. Todos os
             direitos reservados.
           </p>
 
