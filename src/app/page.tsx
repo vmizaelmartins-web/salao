@@ -1,124 +1,63 @@
+```tsx
 import Link from "next/link";
-
-const destaques = [
-  {
-    titulo: "20+ anos de experiência",
-    texto: "Uma trajetória construída com dedicação, aperfeiçoamento e amor pela beleza.",
-  },
-  {
-    titulo: "Atendimento personalizado",
-    texto: "Cada cliente é única. O atendimento é pensado para respeitar suas necessidades e desejos.",
-  },
-  {
-    titulo: "Qualidade em cada detalhe",
-    texto: "Técnicas e produtos escolhidos com cuidado para valorizar sua beleza.",
-  },
-  {
-    titulo: "Um momento só seu",
-    texto: "Um ambiente acolhedor para você desacelerar, cuidar de si e se sentir ainda mais bonita.",
-  },
-];
-
-const servicosDestaque = [
-  {
-    nome: "Corte",
-    descricao: "Um corte pensado para valorizar seu estilo e sua personalidade.",
-    duracao: "2 horas",
-    preco: "R$ 80,00",
-  },
-  {
-    nome: "Design de sobrancelha",
-    descricao: "Realce seu olhar com um design personalizado.",
-    duracao: "1h20",
-    preco: "R$ 35,00",
-  },
-  {
-    nome: "Mechas",
-    descricao: "Ilumine os cabelos com uma técnica pensada para o seu visual.",
-    duracao: "4 horas",
-    preco: "A partir de R$ 400,00",
-  },
-  {
-    nome: "Limpeza de pele",
-    descricao: "Um cuidado especial para renovar e deixar sua pele mais saudável.",
-    duracao: "1h45",
-    preco: "R$ 90,00",
-  },
-];
-
-const depoimentos = [
-  {
-    texto:
-      "A Karen é extremamente cuidadosa e caprichosa. Saio de lá sempre me sentindo maravilhosa.",
-    nome: "Cliente",
-  },
-  {
-    texto:
-      "Um atendimento maravilhoso, feito com muito carinho e atenção em cada detalhe.",
-    nome: "Cliente",
-  },
-  {
-    texto:
-      "A experiência e o cuidado da Karen fazem toda a diferença. Super recomendo!",
-    nome: "Cliente",
-  },
-];
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white">
 
-      {/* MENU */}
-      <header className="fixed top-0 z-50 w-full border-b border-[#b76e79]/30 bg-black/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+      {/* =========================
+          NAVBAR
+      ========================== */}
+      <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-black/85 backdrop-blur-md">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
 
           <Link
             href="/"
-            className="text-lg font-semibold tracking-[0.22em] text-[#d8a0a8] md:text-xl"
+            className="text-lg tracking-[0.18em] text-[#d8a0a8]"
           >
-            KAREN SALLA DESIGNER
+            KAREN SALLA
           </Link>
 
-          <nav className="hidden items-center gap-8 text-sm md:flex">
-            <a
-              href="#inicio"
-              className="transition hover:text-[#d8a0a8]"
+          <nav className="hidden items-center gap-8 md:flex">
+            <Link
+              href="/"
+              className="text-sm text-white transition hover:text-[#d8a0a8]"
             >
               Início
-            </a>
-
-            <Link
-              href="/servicos"
-              className="transition hover:text-[#d8a0a8]"
-            >
-              Serviços
             </Link>
 
             <a
               href="#sobre"
-              className="transition hover:text-[#d8a0a8]"
+              className="text-sm text-white transition hover:text-[#d8a0a8]"
             >
-              Sobre
-            </a>
-
-            <a
-              href="#depoimentos"
-              className="transition hover:text-[#d8a0a8]"
-            >
-              Depoimentos
+              Sobre a Karen
             </a>
 
             <Link
-              href="/agendar"
-              className="rounded-full border border-[#d8a0a8] px-5 py-2 text-[#d8a0a8] transition hover:bg-[#d8a0a8] hover:text-black"
+              href="/servicos"
+              className="text-sm text-white transition hover:text-[#d8a0a8]"
             >
-              Agendar
+              Serviços
             </Link>
+
+            <Link
+              href="/agendamento"
+              className="text-sm text-white transition hover:text-[#d8a0a8]"
+            >
+              Agendamento
+            </Link>
+
+            <a
+              href="#contato"
+              className="text-sm text-white transition hover:text-[#d8a0a8]"
+            >
+              Contato
+            </a>
           </nav>
 
           <Link
-            href="/agendar"
-            className="rounded-full border border-[#d8a0a8] px-5 py-2 text-sm text-[#d8a0a8] transition hover:bg-[#d8a0a8] hover:text-black md:hidden"
+            href="/agendamento"
+            className="rounded-full border border-[#d8a0a8] px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-[#d8a0a8] transition hover:bg-[#d8a0a8] hover:text-black"
           >
             Agendar
           </Link>
@@ -126,95 +65,71 @@ export default function Home() {
         </div>
       </header>
 
-      {/* HERO */}
-      <section
-        id="inicio"
-        className="flex min-h-screen items-center px-6 pb-16 pt-32"
-      >
-        <div className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2">
+
+      {/* =========================
+          HERO
+      ========================== */}
+      <section className="relative flex min-h-screen items-center overflow-hidden">
+
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black" />
+
+        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-6 pb-20 pt-32 md:grid-cols-2">
 
           <div>
+
             <p className="mb-5 text-sm uppercase tracking-[0.35em] text-[#d8a0a8]">
-              Studio Karen Salla
+              Studio Karen Salla Designer
             </p>
 
-            <h1 className="text-5xl font-light leading-[1.08] md:text-7xl">
-              Beleza,
-              <span className="block font-medium text-[#d8a0a8]">
-                experiência
+            <h1 className="max-w-3xl text-5xl font-light leading-tight md:text-7xl">
+              Beleza que faz parte
+              <span className="block italic text-[#d8a0a8]">
+                da sua história.
               </span>
-              e cuidado.
             </h1>
 
-            <p className="mt-7 max-w-xl text-lg leading-8 text-zinc-400">
-              Há mais de 20 anos, Karen Salla transforma beleza em
-              autoestima, oferecendo um atendimento personalizado e
-              pensado em cada detalhe.
+            <p className="mt-7 max-w-xl text-base leading-8 text-zinc-400">
+              “Há mais de 20 anos, tenho o privilégio de trabalhar
+              com aquilo que amo.”
             </p>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-9 flex flex-wrap gap-4">
 
               <Link
-                href="/agendar"
-                className="rounded-full bg-[#d8a0a8] px-8 py-4 text-center font-semibold text-black transition hover:scale-105"
+                href="/agendamento"
+                className="rounded-full bg-[#d8a0a8] px-7 py-3.5 text-sm font-medium text-black transition hover:bg-[#e7b8bf]"
               >
                 Agendar meu horário
               </Link>
 
-              <a
-                href="#sobre"
-                className="rounded-full border border-white/20 px-8 py-4 text-center transition hover:border-[#d8a0a8] hover:text-[#d8a0a8]"
+              <Link
+                href="/servicos"
+                className="rounded-full border border-white/20 px-7 py-3.5 text-sm text-white transition hover:border-[#d8a0a8] hover:text-[#d8a0a8]"
               >
-                Conheça a Karen
-              </a>
+                Conheça os serviços
+              </Link>
 
             </div>
 
-            <div className="mt-10 flex items-center gap-8 border-t border-white/10 pt-7">
-
-              <div>
-                <p className="text-3xl font-light text-[#d8a0a8]">
-                  20+
-                </p>
-                <p className="mt-1 text-xs uppercase tracking-wider text-zinc-500">
-                  anos de experiência
-                </p>
-              </div>
-
-              <div className="h-10 w-px bg-white/10" />
-
-              <div>
-                <p className="text-3xl font-light text-[#d8a0a8]">
-                  100%
-                </p>
-                <p className="mt-1 text-xs uppercase tracking-wider text-zinc-500">
-                  atendimento personalizado
-                </p>
-              </div>
-
-            </div>
           </div>
 
-          {/* FOTO DA KAREN */}
-          <div className="relative">
 
-            <div className="absolute -inset-4 rounded-[2rem] border border-[#d8a0a8]/10" />
+          {/* Espaço reservado para foto real */}
+          <div className="relative mx-auto w-full max-w-lg">
 
-            <div className="relative flex h-[560px] items-center justify-center overflow-hidden rounded-[2rem] border border-[#d8a0a8]/30 bg-zinc-950">
+            <div className="aspect-[4/5] rounded-[2rem] border border-[#d8a0a8]/20 bg-zinc-950">
 
-              <div className="text-center">
+              <div className="flex h-full items-center justify-center p-8 text-center">
 
-                <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full border border-[#d8a0a8]/40 text-[#d8a0a8]">
-                  KS
+                <div>
+                  <p className="text-xs uppercase tracking-[0.3em] text-[#d8a0a8]/50">
+                    Foto da Karen
+                  </p>
+
+                  <p className="mt-3 text-sm text-zinc-700">
+                    Espaço reservado para foto real
+                  </p>
                 </div>
-
-                <p className="text-sm uppercase tracking-[0.3em] text-zinc-600">
-                  Foto profissional da Karen
-                </p>
-
-                <p className="mt-2 text-xs text-zinc-700">
-                  Espaço reservado para sua foto
-                </p>
 
               </div>
 
@@ -225,82 +140,94 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FRASE */}
-      <section className="border-y border-white/10 bg-zinc-950 px-6 py-20">
 
-        <div className="mx-auto max-w-4xl text-center">
+      {/* =========================
+          FRASE DE IMPACTO
+      ========================== */}
+      <section className="border-y border-white/10 bg-zinc-950 px-6 py-28">
 
-          <p className="text-sm uppercase tracking-[0.3em] text-[#d8a0a8]">
-            Uma experiência de beleza
+        <div className="mx-auto max-w-5xl text-center">
+
+          <p className="text-xs uppercase tracking-[0.35em] text-[#d8a0a8]">
+            Muito além da beleza
           </p>
 
-          <h2 className="mt-5 text-3xl font-light leading-relaxed md:text-5xl">
-            “Mais do que um procedimento,
-            <span className="text-[#d8a0a8]">
-              {" "}um momento para você.
-            </span>
-            ”
+          <h2 className="mt-7 text-4xl font-light leading-tight md:text-6xl">
+            “Ser cabeleireira vai muito além de
+            <span className="text-[#d8a0a8]"> transformar cabelos.”</span>
           </h2>
 
         </div>
 
       </section>
 
-      {/* SOBRE */}
-      <section id="sobre" className="px-6 py-28">
 
-        <div className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2">
+      {/* =========================
+          SOBRE A KAREN
+      ========================== */}
+      <section id="sobre" className="bg-black px-6 py-28">
 
-          <div className="flex h-[500px] items-center justify-center rounded-[2rem] border border-[#d8a0a8]/30 bg-zinc-950">
+        <div className="mx-auto grid max-w-7xl items-center gap-16 md:grid-cols-2">
 
-            <div className="text-center">
+          {/* Foto reservada */}
+          <div className="order-2 aspect-[4/5] rounded-[2rem] border border-[#d8a0a8]/20 bg-zinc-950 md:order-1">
 
-              <p className="text-sm uppercase tracking-[0.3em] text-zinc-600">
-                Foto da Karen
-              </p>
+            <div className="flex h-full items-center justify-center p-8 text-center">
 
-              <p className="mt-2 text-xs text-zinc-700">
-                Espaço reservado para uma foto pessoal
-              </p>
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-[#d8a0a8]/50">
+                  Foto
+                </p>
+
+                <p className="mt-3 text-sm text-zinc-700">
+                  Espaço reservado para foto real
+                </p>
+              </div>
 
             </div>
 
           </div>
 
-          <div>
+
+          <div className="order-1 md:order-2">
 
             <p className="text-sm uppercase tracking-[0.3em] text-[#d8a0a8]">
               Prazer, eu sou a Karen
             </p>
 
-            <h2 className="mt-4 text-4xl font-light md:text-5xl">
-              Beleza construída com experiência.
+            <h2 className="mt-5 text-4xl font-light md:text-5xl">
+              Minha história com a beleza
+              <span className="block italic text-[#d8a0a8]">
+                começou ainda na infância.
+              </span>
             </h2>
 
-            <p className="mt-7 leading-8 text-zinc-400">
-              Há mais de 20 anos trabalho com beleza, sempre buscando
-              aprimorar meus conhecimentos e acompanhar as novidades
-              do mercado.
-            </p>
+            <div className="mt-7 space-y-5 text-base leading-8 text-zinc-400">
 
-            <p className="mt-5 leading-8 text-zinc-400">
-              Para mim, cada cliente merece mais do que um procedimento:
-              merece ser cuidada, ouvida e sair se sentindo ainda mais
-              bonita.
-            </p>
+              <p>
+                “Eu amava acompanhar minha mãe ao cabeleireiro
+                e ficava encantada observando cada detalhe.”
+              </p>
 
-            <p className="mt-5 leading-8 text-zinc-400">
-              Cada atendimento é realizado com carinho, atenção e
-              dedicação, respeitando o estilo e as necessidades de cada
-              pessoa.
-            </p>
+              <p>
+                “O cuidado, os movimentos, o ambiente e aquele
+                cheirinho dos produtos despertavam em mim uma paixão.”
+              </p>
 
-            <Link
-              href="/agendar"
-              className="mt-8 inline-block rounded-full border border-[#d8a0a8] px-7 py-3 text-[#d8a0a8] transition hover:bg-[#d8a0a8] hover:text-black"
+              <p>
+                Com o passar dos anos, essa paixão se transformou
+                em profissão e em uma história construída ao lado
+                de tantas clientes.
+              </p>
+
+            </div>
+
+            <a
+              href="#historia"
+              className="mt-8 inline-block text-sm uppercase tracking-[0.2em] text-[#d8a0a8] transition hover:text-white"
             >
-              Quero agendar
-            </Link>
+              Conheça minha história →
+            </a>
 
           </div>
 
@@ -308,175 +235,110 @@ export default function Home() {
 
       </section>
 
-      {/* DIFERENCIAIS */}
+
+      {/* =========================
+          SERVIÇOS
+      ========================== */}
       <section className="bg-zinc-950 px-6 py-28">
 
         <div className="mx-auto max-w-7xl">
 
-          <div className="mb-14 text-center">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
 
-            <p className="text-sm uppercase tracking-[0.3em] text-[#d8a0a8]">
-              Por que escolher o Studio?
-            </p>
+            <div>
 
-            <h2 className="mt-4 text-4xl font-light md:text-5xl">
-              Cuidado que faz diferença
-            </h2>
+              <p className="text-sm uppercase tracking-[0.3em] text-[#d8a0a8]">
+                Meu trabalho
+              </p>
 
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-
-            {destaques.map((item, index) => (
-              <div
-                key={item.titulo}
-                className="rounded-2xl border border-white/10 bg-black p-7 transition hover:-translate-y-1 hover:border-[#d8a0a8]/50"
-              >
-
-                <span className="text-sm text-[#d8a0a8]">
-                  0{index + 1}
+              <h2 className="mt-4 text-4xl font-light md:text-5xl">
+                Tudo para você se sentir
+                <span className="block italic text-[#d8a0a8]">
+                  ainda mais você.
                 </span>
+              </h2>
 
-                <h3 className="mt-6 text-xl font-medium">
-                  {item.titulo}
-                </h3>
-
-                <p className="mt-4 text-sm leading-7 text-zinc-500">
-                  {item.texto}
-                </p>
-
-              </div>
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* GALERIA */}
-      <section className="px-6 py-28">
-
-        <div className="mx-auto max-w-7xl">
-
-          <div className="mb-12">
-
-            <p className="text-sm uppercase tracking-[0.3em] text-[#d8a0a8]">
-              Momentos & resultados
-            </p>
-
-            <h2 className="mt-4 text-4xl font-light md:text-5xl">
-              Conheça nosso trabalho
-            </h2>
-
-            <p className="mt-4 max-w-xl text-zinc-500">
-              Um pouco do ambiente, dos detalhes e dos resultados
-              realizados no Studio Karen Salla.
-            </p>
-
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-
-            {[
-              "Foto do Studio",
-              "Cabelos",
-              "Sobrancelhas",
-              "Beleza & detalhes",
-            ].map((foto, index) => (
-              <div
-                key={foto}
-                className={`flex items-center justify-center overflow-hidden rounded-2xl border border-[#d8a0a8]/20 bg-zinc-950 ${
-                  index === 0
-                    ? "h-80 lg:col-span-2"
-                    : "h-80"
-                }`}
-              >
-                <div className="text-center">
-
-                  <p className="text-sm uppercase tracking-[0.25em] text-zinc-600">
-                    {foto}
-                  </p>
-
-                  <p className="mt-2 text-xs text-zinc-700">
-                    Espaço para foto real
-                  </p>
-
-                </div>
-              </div>
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* SERVIÇOS */}
-      <section className="bg-zinc-950 px-6 py-28">
-
-        <div className="mx-auto max-w-7xl">
-
-          <div className="mb-14 text-center">
-
-            <p className="text-sm uppercase tracking-[0.3em] text-[#d8a0a8]">
-              Serviços
-            </p>
-
-            <h2 className="mt-4 text-4xl font-light md:text-5xl">
-              Cuidados pensados para você
-            </h2>
-
-            <p className="mx-auto mt-5 max-w-2xl text-zinc-500">
-              Escolha seu serviço e descubra uma experiência de beleza
-              personalizada.
-            </p>
-
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-
-            {servicosDestaque.map((servico) => (
-              <div
-                key={servico.nome}
-                className="rounded-2xl border border-white/10 bg-black p-6 transition hover:-translate-y-1 hover:border-[#d8a0a8]/50"
-              >
-
-                <div className="mb-6 flex h-32 items-center justify-center rounded-xl bg-zinc-900">
-                  <span className="text-xs uppercase tracking-[0.2em] text-zinc-700">
-                    Foto
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-medium">
-                  {servico.nome}
-                </h3>
-
-                <p className="mt-3 min-h-[72px] text-sm leading-6 text-zinc-500">
-                  {servico.descricao}
-                </p>
-
-                <p className="mt-4 text-xs text-zinc-600">
-                  {servico.duracao}
-                </p>
-
-                <p className="mt-2 text-lg font-semibold text-[#d8a0a8]">
-                  {servico.preco}
-                </p>
-
-              </div>
-            ))}
-
-          </div>
-
-          <div className="mt-12 text-center">
+            </div>
 
             <Link
               href="/servicos"
-              className="inline-block rounded-full border border-[#d8a0a8] px-9 py-3 text-[#d8a0a8] transition hover:bg-[#d8a0a8] hover:text-black"
+              className="text-sm uppercase tracking-[0.2em] text-[#d8a0a8] transition hover:text-white"
             >
-              Ver todos os serviços
+              Ver todos os serviços →
             </Link>
+
+          </div>
+
+
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
+
+            <div className="rounded-3xl border border-white/10 bg-black p-8 transition hover:border-[#d8a0a8]/40">
+
+              <span className="text-3xl text-[#d8a0a8]">✂</span>
+
+              <h3 className="mt-7 text-2xl font-light">
+                Cabelos
+              </h3>
+
+              <p className="mt-4 text-sm leading-7 text-zinc-500">
+                Cortes, coloração, mechas, tratamentos,
+                escova, penteados e muito mais.
+              </p>
+
+              <Link
+                href="/servicos"
+                className="mt-7 inline-block text-xs uppercase tracking-[0.2em] text-[#d8a0a8]"
+              >
+                Conhecer →
+              </Link>
+
+            </div>
+
+
+            <div className="rounded-3xl border border-white/10 bg-black p-8 transition hover:border-[#d8a0a8]/40">
+
+              <span className="text-3xl text-[#d8a0a8]">♡</span>
+
+              <h3 className="mt-7 text-2xl font-light">
+                Sobrancelhas & Olhar
+              </h3>
+
+              <p className="mt-4 text-sm leading-7 text-zinc-500">
+                Design de sobrancelhas, henna e
+                extensão de cílios.
+              </p>
+
+              <Link
+                href="/servicos"
+                className="mt-7 inline-block text-xs uppercase tracking-[0.2em] text-[#d8a0a8]"
+              >
+                Conhecer →
+              </Link>
+
+            </div>
+
+
+            <div className="rounded-3xl border border-white/10 bg-black p-8 transition hover:border-[#d8a0a8]/40">
+
+              <span className="text-3xl text-[#d8a0a8]">✦</span>
+
+              <h3 className="mt-7 text-2xl font-light">
+                Beleza & Bem-estar
+              </h3>
+
+              <p className="mt-4 text-sm leading-7 text-zinc-500">
+                Limpeza de pele, maquiagem, massagens
+                e outros cuidados.
+              </p>
+
+              <Link
+                href="/servicos"
+                className="mt-7 inline-block text-xs uppercase tracking-[0.2em] text-[#d8a0a8]"
+              >
+                Conhecer →
+              </Link>
+
+            </div>
 
           </div>
 
@@ -484,8 +346,121 @@ export default function Home() {
 
       </section>
 
-      {/* DEPOIMENTOS */}
-      <section id="depoimentos" className="px-6 py-28">
+
+      {/* =========================
+          JEITO KAREN
+      ========================== */}
+      <section className="bg-black px-6 py-28">
+
+        <div className="mx-auto max-w-5xl text-center">
+
+          <p className="text-sm uppercase tracking-[0.3em] text-[#d8a0a8]">
+            O jeito Karen de cuidar
+          </p>
+
+          <h2 className="mt-6 text-4xl font-light leading-tight md:text-6xl">
+            “Amo fazer parte da vida de cada cliente,
+            proporcionar momentos de cuidado,
+            <span className="text-[#d8a0a8]">
+              {" "}arrancar sorrisos...”
+            </span>
+          </h2>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================
+          GALERIA
+      ========================== */}
+      <section className="bg-zinc-950 px-6 py-28">
+
+        <div className="mx-auto max-w-7xl">
+
+          <div className="text-center">
+
+            <p className="text-sm uppercase tracking-[0.3em] text-[#d8a0a8]">
+              Conheça o Studio
+            </p>
+
+            <h2 className="mt-4 text-4xl font-light md:text-5xl">
+              Um espaço para cuidar de você.
+            </h2>
+
+          </div>
+
+
+          <div className="mt-14 grid gap-4 md:grid-cols-3">
+
+            <div className="min-h-[420px] rounded-3xl border border-[#d8a0a8]/15 bg-black md:col-span-2">
+              <div className="flex h-full min-h-[420px] items-center justify-center text-center">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.3em] text-[#d8a0a8]/50">
+                    Foto do Studio
+                  </p>
+                  <p className="mt-3 text-sm text-zinc-700">
+                    Espaço reservado para foto real
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+            <div className="min-h-[420px] rounded-3xl border border-[#d8a0a8]/15 bg-black">
+              <div className="flex h-full min-h-[420px] items-center justify-center text-center">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.3em] text-[#d8a0a8]/50">
+                    Foto
+                  </p>
+                  <p className="mt-3 text-sm text-zinc-700">
+                    Espaço reservado para foto real
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+
+            {[1, 2, 3].map((numero) => (
+
+              <div
+                key={numero}
+                className="min-h-[260px] rounded-3xl border border-[#d8a0a8]/15 bg-black"
+              >
+
+                <div className="flex h-full min-h-[260px] items-center justify-center text-center">
+
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.3em] text-[#d8a0a8]/50">
+                      Foto {numero}
+                    </p>
+
+                    <p className="mt-3 text-sm text-zinc-700">
+                      Espaço reservado para foto real
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================
+          DEPOIMENTOS
+      ========================== */}
+      <section id="depoimentos" className="bg-black px-6 py-28">
 
         <div className="mx-auto max-w-6xl">
 
@@ -499,29 +474,41 @@ export default function Home() {
               O que minhas clientes dizem
             </h2>
 
+            <p className="mx-auto mt-5 max-w-2xl text-zinc-500">
+              Em breve, experiências reais de quem já viveu
+              um momento no Studio Karen Salla.
+            </p>
+
           </div>
+
 
           <div className="grid gap-5 md:grid-cols-3">
 
-            {depoimentos.map((depoimento) => (
+            {[1, 2, 3].map((numero) => (
+
               <div
-                key={depoimento.texto}
-                className="rounded-2xl border border-white/10 bg-zinc-950 p-7"
+                key={numero}
+                className="flex min-h-[230px] items-center justify-center rounded-2xl border border-dashed border-[#d8a0a8]/30 bg-zinc-950 p-7 text-center"
               >
 
-                <div className="text-xl tracking-[0.2em] text-[#d8a0a8]">
-                  ★★★★★
+                <div>
+
+                  <div className="text-xl tracking-[0.2em] text-[#d8a0a8]/30">
+                    ★★★★★
+                  </div>
+
+                  <p className="mt-5 text-sm text-zinc-700">
+                    Espaço reservado
+                  </p>
+
+                  <p className="mt-2 text-xs text-zinc-800">
+                    Depoimento real será adicionado aqui
+                  </p>
+
                 </div>
 
-                <p className="mt-6 leading-7 text-zinc-400">
-                  “{depoimento.texto}”
-                </p>
-
-                <p className="mt-6 text-sm text-zinc-600">
-                  — {depoimento.nome}
-                </p>
-
               </div>
+
             ))}
 
           </div>
@@ -530,27 +517,32 @@ export default function Home() {
 
       </section>
 
-      {/* CTA */}
-      <section className="bg-[#d8a0a8] px-6 py-24 text-black">
+
+      {/* =========================
+          CTA FINAL
+      ========================== */}
+      <section className="border-t border-white/10 bg-zinc-950 px-6 py-32">
 
         <div className="mx-auto max-w-4xl text-center">
 
-          <p className="text-sm uppercase tracking-[0.3em]">
-            Seu momento começa aqui
+          <p className="text-sm uppercase tracking-[0.3em] text-[#d8a0a8]">
+            Uma história construída juntas
           </p>
 
-          <h2 className="mt-5 text-4xl font-semibold md:text-6xl">
-            Reserve um tempo para você.
+          <h2 className="mt-6 text-4xl font-light leading-tight md:text-6xl">
+            “Hoje, cada cliente que senta na minha cadeira
+            <span className="text-[#d8a0a8]">
+              {" "}faz parte dessa história.”
+            </span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8">
-            Escolha seu serviço, encontre o melhor horário e venha
-            viver uma experiência de beleza, cuidado e bem-estar.
+          <p className="mt-7 text-lg text-zinc-500">
+            Seu próximo momento começa aqui.
           </p>
 
           <Link
-            href="/agendar"
-            className="mt-8 inline-block rounded-full bg-black px-10 py-4 font-medium text-white transition hover:scale-105"
+            href="/agendamento"
+            className="mt-9 inline-flex rounded-full bg-[#d8a0a8] px-8 py-4 text-sm font-medium text-black transition hover:bg-[#e7b8bf]"
           >
             Agendar meu horário
           </Link>
@@ -559,85 +551,51 @@ export default function Home() {
 
       </section>
 
-      {/* CONTATO */}
-      <section className="px-6 py-24">
 
-        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-3">
+      {/* =========================
+          CONTATO / FOOTER
+      ========================== */}
+      <footer id="contato" className="border-t border-white/10 bg-black px-6 py-12">
 
-          <div>
-            <p className="text-sm uppercase tracking-[0.25em] text-[#d8a0a8]">
-              Studio
-            </p>
-            <h3 className="mt-3 text-2xl font-light">
-              Karen Salla Designer
-            </h3>
-            <p className="mt-4 text-sm leading-6 text-zinc-500">
-              Beleza, experiência e cuidado em cada detalhe.
-            </p>
-          </div>
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-center">
 
           <div>
-            <p className="text-sm uppercase tracking-[0.25em] text-[#d8a0a8]">
-              Localização
+
+            <p className="text-lg tracking-[0.18em] text-[#d8a0a8]">
+              KAREN SALLA DESIGNER
             </p>
-            <p className="mt-4 text-zinc-400">
-              Limeira – SP
-            </p>
+
             <p className="mt-2 text-sm text-zinc-600">
-              Atendimento com hora marcada
+              Beleza, cuidado e histórias que continuam.
             </p>
-          </div>
-
-          <div>
-            <p className="text-sm uppercase tracking-[0.25em] text-[#d8a0a8]">
-              Fale comigo
-            </p>
-
-            <div className="mt-4 flex flex-col gap-3">
-
-              <a
-                href="#"
-                className="text-zinc-400 transition hover:text-[#d8a0a8]"
-              >
-                WhatsApp
-              </a>
-
-              <a
-                href="#"
-                className="text-zinc-400 transition hover:text-[#d8a0a8]"
-              >
-                Instagram
-              </a>
-
-            </div>
 
           </div>
 
-        </div>
 
-      </section>
+          <div className="flex flex-wrap gap-6">
 
-      {/* WHATSAPP FLUTUANTE */}
-      <a
-        href="#"
-        aria-label="Falar pelo WhatsApp"
-        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#d8a0a8] text-black shadow-lg transition hover:scale-110"
-      >
-        <span className="text-xl">WA</span>
-      </a>
+            <Link
+              href="/servicos"
+              className="text-sm text-zinc-500 transition hover:text-[#d8a0a8]"
+            >
+              Serviços
+            </Link>
 
-      {/* FOOTER */}
-      <footer className="border-t border-white/10 bg-black px-6 py-8">
+            <Link
+              href="/agendamento"
+              className="text-sm text-zinc-500 transition hover:text-[#d8a0a8]"
+            >
+              Agendamento
+            </Link>
 
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
+            <a
+              href="#sobre"
+              className="text-sm text-zinc-500 transition hover:text-[#d8a0a8]"
+            >
+              Sobre
+            </a>
 
-          <p className="text-sm tracking-[0.15em] text-[#d8a0a8]">
-            KAREN SALLA DESIGNER
-          </p>
-
-          <p className="text-xs text-zinc-600">
-            © 2026 Karen Salla Designer. Todos os direitos reservados.
-          </p>
+          </div>
 
         </div>
 
@@ -646,3 +604,4 @@ export default function Home() {
     </main>
   );
 }
+```
