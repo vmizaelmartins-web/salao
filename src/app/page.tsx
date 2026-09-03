@@ -9,7 +9,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
 
           <Link href="/" className="group">
-            <div className="text-xl font-light tracking-[0.25em] text-[#d8b477]">
+            <div className="text-xl font-light tracking-[0.25em] text-[#C98A8A]">
               KAREN SALLA
             </div>
 
@@ -21,35 +21,35 @@ export default function Home() {
           <nav className="hidden items-center gap-8 md:flex">
             <Link
               href="/"
-              className="text-sm text-white/80 transition hover:text-[#d8b477]"
+              className="text-sm text-white/80 transition hover:text-[#C98A8A]"
             >
               Início
             </Link>
 
             <Link
               href="#sobre"
-              className="text-sm text-white/80 transition hover:text-[#d8b477]"
+              className="text-sm text-white/80 transition hover:text-[#C98A8A]"
             >
               Sobre
             </Link>
 
             <Link
               href="/servicos"
-              className="text-sm text-white/80 transition hover:text-[#d8b477]"
+              className="text-sm text-white/80 transition hover:text-[#C98A8A]"
             >
               Serviços
             </Link>
 
             <Link
               href="/agendamento"
-              className="text-sm text-white/80 transition hover:text-[#d8b477]"
+              className="text-sm text-white/80 transition hover:text-[#C98A8A]"
             >
               Agendamento
             </Link>
 
             <Link
               href="#contato"
-              className="text-sm text-white/80 transition hover:text-[#d8b477]"
+              className="text-sm text-white/80 transition hover:text-[#C98A8A]"
             >
               Contato
             </Link>
@@ -57,7 +57,7 @@ export default function Home() {
 
           <Link
             href="/agendamento"
-            className="rounded-full border border-[#d8b477] px-5 py-2.5 text-xs tracking-[0.15em] text-[#d8b477] transition hover:bg-[#d8b477] hover:text-black"
+            className="rounded-full border border-[#C98A8A] px-5 py-2.5 text-xs tracking-[0.15em] text-[#C98A8A] transition hover:bg-[#C98A8A] hover:text-black"
           >
             AGENDAR
           </Link>
@@ -74,21 +74,21 @@ export default function Home() {
 
           <div className="relative z-10">
 
-            <p className="mb-6 text-xs tracking-[0.4em] text-[#d8b477]">
+            <p className="mb-6 text-xs tracking-[0.4em] text-[#C98A8A]">
               KAREN SALLA DESIGNER
             </p>
 
             <h1 className="max-w-3xl text-5xl font-light leading-[1.05] tracking-tight md:text-7xl">
               Beleza que
               <br />
-              <span className="italic text-[#d8b477]">
+              <span className="italic text-[#C98A8A]">
                 transforma
               </span>
               <br />
               momentos.
             </h1>
 
-            <div className="mt-8 max-w-xl border-l border-[#d8b477]/50 pl-5">
+            <div className="mt-8 max-w-xl border-l border-[#C98A8A]/50 pl-5">
               <p className="text-lg font-light leading-relaxed text-white/75">
                 Há mais de 20 anos, tenho o privilégio de trabalhar com aquilo
                 que amo.
@@ -99,14 +99,14 @@ export default function Home() {
 
               <Link
                 href="/agendamento"
-                className="rounded-full bg-[#d8b477] px-7 py-4 text-sm font-medium tracking-wide text-black transition hover:bg-[#ecd09d]"
+                className="rounded-full bg-[#C98A8A] px-7 py-4 text-sm font-medium tracking-wide text-black transition hover:bg-[#E7B5B5]"
               >
                 Agendar meu horário
               </Link>
 
               <Link
                 href="/servicos"
-                className="rounded-full border border-white/25 px-7 py-4 text-sm tracking-wide text-white transition hover:border-[#d8b477] hover:text-[#d8b477]"
+                className="rounded-full border border-white/25 px-7 py-4 text-sm tracking-wide text-white transition hover:border-[#C98A8A] hover:text-[#C98A8A]"
               >
                 Conheça os serviços
               </Link>
@@ -119,14 +119,14 @@ export default function Home() {
           {/* ESPAÇO PARA FOTO */}
           <div className="relative mx-auto h-[560px] w-full max-w-md">
 
-            <div className="absolute inset-0 rounded-t-[220px] border border-[#d8b477]/30" />
+            <div className="absolute inset-0 rounded-t-[220px] border border-[#C98A8A]/30" />
 
             <div className="absolute inset-5 flex items-center justify-center rounded-t-[200px] bg-gradient-to-b from-[#241d16] to-black">
 
               <div className="text-center">
 
-                <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full border border-[#d8b477]/40">
-                  <span className="text-2xl text-[#d8b477]">
+                <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full border border-[#C98A8A]/40">
+                  <span className="text-2xl text-[#C98A8A]">
                     KS
                   </span>
                 </div>
@@ -154,13 +154,13 @@ export default function Home() {
 
         <div className="mx-auto max-w-5xl text-center">
 
-          <p className="text-xs tracking-[0.4em] text-[#d8b477]">
+          <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
             MAIS DO QUE BELEZA
           </p>
 
           <h2 className="mt-7 text-3xl font-light leading-relaxed md:text-5xl">
             Ser cabeleireira vai muito além de
-            <span className="italic text-[#d8b477]">
+            <span className="italic text-[#C98A8A]">
               {" "}transformar cabelos.
             </span>
           </h2>
@@ -178,14 +178,14 @@ export default function Home() {
           {/* FOTO */}
           <div className="relative h-[500px]">
 
-            <div className="absolute left-0 top-0 h-full w-[90%] rounded-[180px_180px_0_0] border border-[#d8b477]/30" />
+            <div className="absolute left-0 top-0 h-full w-[90%] rounded-[180px_180px_0_0] border border-[#C98A8A]/30" />
 
             <div className="absolute bottom-0 right-0 flex h-[90%] w-[85%] items-center justify-center rounded-[150px_150px_0_0] bg-[#15110d]">
 
               <div className="text-center">
 
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-[#d8b477]/30">
-                  <span className="text-xl text-[#d8b477]">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-[#C98A8A]/30">
+                  <span className="text-xl text-[#C98A8A]">
                     KS
                   </span>
                 </div>
@@ -203,14 +203,14 @@ export default function Home() {
 
           <div>
 
-            <p className="text-xs tracking-[0.4em] text-[#d8b477]">
+            <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
               SOBRE A KAREN
             </p>
 
             <h2 className="mt-5 text-4xl font-light md:text-5xl">
               Prazer,
               <br />
-              <span className="italic text-[#d8b477]">
+              <span className="italic text-[#C98A8A]">
                 eu sou a Karen.
               </span>
             </h2>
@@ -235,7 +235,7 @@ export default function Home() {
 
             <Link
               href="#contato"
-              className="mt-8 inline-flex items-center text-sm tracking-wide text-[#d8b477] transition hover:text-white"
+              className="mt-8 inline-flex items-center text-sm tracking-wide text-[#C98A8A] transition hover:text-white"
             >
               Conheça minha história
               <span className="ml-3 text-lg">
@@ -258,14 +258,14 @@ export default function Home() {
 
             <div>
 
-              <p className="text-xs tracking-[0.4em] text-[#d8b477]">
+              <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
                 SERVIÇOS
               </p>
 
               <h2 className="mt-5 text-4xl font-light md:text-5xl">
                 Cuidados pensados
                 <br />
-                <span className="italic text-[#d8b477]">
+                <span className="italic text-[#C98A8A]">
                   para você.
                 </span>
               </h2>
@@ -274,7 +274,7 @@ export default function Home() {
 
             <Link
               href="/servicos"
-              className="text-sm tracking-wide text-white/60 transition hover:text-[#d8b477]"
+              className="text-sm tracking-wide text-white/60 transition hover:text-[#C98A8A]"
             >
               Ver todos os serviços →
             </Link>
@@ -289,7 +289,7 @@ export default function Home() {
               className="group bg-black p-8 transition hover:bg-[#15110d]"
             >
 
-              <span className="text-xs tracking-[0.25em] text-[#d8b477]">
+              <span className="text-xs tracking-[0.25em] text-[#C98A8A]">
                 01
               </span>
 
@@ -301,7 +301,7 @@ export default function Home() {
                 Cortes pensados para valorizar sua personalidade e estilo.
               </p>
 
-              <span className="mt-10 block text-sm text-[#d8b477]">
+              <span className="mt-10 block text-sm text-[#C98A8A]">
                 Conhecer →
               </span>
 
@@ -313,7 +313,7 @@ export default function Home() {
               className="group bg-black p-8 transition hover:bg-[#15110d]"
             >
 
-              <span className="text-xs tracking-[0.25em] text-[#d8b477]">
+              <span className="text-xs tracking-[0.25em] text-[#C98A8A]">
                 02
               </span>
 
@@ -325,7 +325,7 @@ export default function Home() {
                 Técnicas de cor para renovar, iluminar e transformar.
               </p>
 
-              <span className="mt-10 block text-sm text-[#d8b477]">
+              <span className="mt-10 block text-sm text-[#C98A8A]">
                 Conhecer →
               </span>
 
@@ -337,7 +337,7 @@ export default function Home() {
               className="group bg-black p-8 transition hover:bg-[#15110d]"
             >
 
-              <span className="text-xs tracking-[0.25em] text-[#d8b477]">
+              <span className="text-xs tracking-[0.25em] text-[#C98A8A]">
                 03
               </span>
 
@@ -349,7 +349,7 @@ export default function Home() {
                 Cuidados para devolver vida, brilho e movimento aos fios.
               </p>
 
-              <span className="mt-10 block text-sm text-[#d8b477]">
+              <span className="mt-10 block text-sm text-[#C98A8A]">
                 Conhecer →
               </span>
 
@@ -366,7 +366,7 @@ export default function Home() {
 
         <div className="mx-auto max-w-4xl text-center">
 
-          <p className="text-xs tracking-[0.4em] text-[#d8b477]">
+          <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
             O JEITO KAREN DE CUIDAR
           </p>
 
@@ -390,13 +390,13 @@ export default function Home() {
 
           <div className="mb-14">
 
-            <p className="text-xs tracking-[0.4em] text-[#d8b477]">
+            <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
               MOMENTOS
             </p>
 
             <h2 className="mt-5 text-4xl font-light md:text-5xl">
               Um pouco do
-              <span className="italic text-[#d8b477]">
+              <span className="italic text-[#C98A8A]">
                 {" "}meu trabalho.
               </span>
             </h2>
@@ -437,13 +437,13 @@ export default function Home() {
 
           <div className="text-center">
 
-            <p className="text-xs tracking-[0.4em] text-[#d8b477]">
+            <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
               EXPERIÊNCIAS
             </p>
 
             <h2 className="mt-5 text-4xl font-light md:text-5xl">
               O que minhas
-              <span className="italic text-[#d8b477]">
+              <span className="italic text-[#C98A8A]">
                 {" "}clientes dizem.
               </span>
             </h2>
@@ -459,19 +459,19 @@ export default function Home() {
           <div className="mt-14 grid gap-5 md:grid-cols-3">
 
             <div className="min-h-[220px] border border-white/10 p-8">
-              <span className="text-xs tracking-[0.2em] text-[#d8b477]">
+              <span className="text-xs tracking-[0.2em] text-[#C98A8A]">
                 DEPOIMENTO
               </span>
             </div>
 
             <div className="min-h-[220px] border border-white/10 p-8">
-              <span className="text-xs tracking-[0.2em] text-[#d8b477]">
+              <span className="text-xs tracking-[0.2em] text-[#C98A8A]">
                 DEPOIMENTO
               </span>
             </div>
 
             <div className="min-h-[220px] border border-white/10 p-8">
-              <span className="text-xs tracking-[0.2em] text-[#d8b477]">
+              <span className="text-xs tracking-[0.2em] text-[#C98A8A]">
                 DEPOIMENTO
               </span>
             </div>
@@ -483,19 +483,19 @@ export default function Home() {
 
 
       {/* CTA FINAL */}
-      <section className="relative overflow-hidden border-y border-[#d8b477]/20 bg-[#100d09] px-6 py-32">
+      <section className="relative overflow-hidden border-y border-[#C98A8A]/20 bg-[#100d09] px-6 py-32">
 
-        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d8b477]/5 blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C98A8A]/5 blur-3xl" />
 
         <div className="relative mx-auto max-w-4xl text-center">
 
-          <p className="text-xs tracking-[0.4em] text-[#d8b477]">
+          <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
             SUA VEZ
           </p>
 
           <h2 className="mt-7 text-4xl font-light leading-tight md:text-6xl">
             Hoje, cada cliente que senta na minha cadeira
-            <span className="italic text-[#d8b477]">
+            <span className="italic text-[#C98A8A]">
               {" "}faz parte dessa história.
             </span>
           </h2>
@@ -506,7 +506,7 @@ export default function Home() {
 
           <Link
             href="/agendamento"
-            className="mt-10 inline-flex rounded-full bg-[#d8b477] px-8 py-4 text-sm font-medium tracking-wide text-black transition hover:bg-[#ecd09d]"
+            className="mt-10 inline-flex rounded-full bg-[#C98A8A] px-8 py-4 text-sm font-medium tracking-wide text-black transition hover:bg-[#E7B5B5]"
           >
             Agendar meu horário
           </Link>
@@ -523,7 +523,7 @@ export default function Home() {
 
           <div>
 
-            <div className="text-xl font-light tracking-[0.25em] text-[#d8b477]">
+            <div className="text-xl font-light tracking-[0.25em] text-[#C98A8A]">
               KAREN SALLA
             </div>
 
@@ -540,7 +540,7 @@ export default function Home() {
 
           <div>
 
-            <p className="text-xs tracking-[0.3em] text-[#d8b477]">
+            <p className="text-xs tracking-[0.3em] text-[#C98A8A]">
               NAVEGAÇÃO
             </p>
 
@@ -548,21 +548,21 @@ export default function Home() {
 
               <Link
                 href="/"
-                className="transition hover:text-[#d8b477]"
+                className="transition hover:text-[#C98A8A]"
               >
                 Início
               </Link>
 
               <Link
                 href="/servicos"
-                className="transition hover:text-[#d8b477]"
+                className="transition hover:text-[#C98A8A]"
               >
                 Serviços
               </Link>
 
               <Link
                 href="/agendamento"
-                className="transition hover:text-[#d8b477]"
+                className="transition hover:text-[#C98A8A]"
               >
                 Agendamento
               </Link>
@@ -574,7 +574,7 @@ export default function Home() {
 
           <div>
 
-            <p className="text-xs tracking-[0.3em] text-[#d8b477]">
+            <p className="text-xs tracking-[0.3em] text-[#C98A8A]">
               AGENDAMENTO
             </p>
 
@@ -584,7 +584,7 @@ export default function Home() {
 
             <Link
               href="/agendamento"
-              className="mt-5 inline-block text-sm text-[#d8b477] transition hover:text-white"
+              className="mt-5 inline-block text-sm text-[#C98A8A] transition hover:text-white"
             >
               Agendar horário →
             </Link>
