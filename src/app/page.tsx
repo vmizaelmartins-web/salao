@@ -14,7 +14,7 @@ export default function Home() {
             </div>
 
             <div className="mt-1 text-[9px] tracking-[0.35em] text-white/60">
-              DESIGNER
+              STUDIO
             </div>
           </Link>
 
