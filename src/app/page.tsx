@@ -262,12 +262,16 @@ export default function Home() {
 
               <div className="relative aspect-[4/5] overflow-hidden">
 
-                <Image
-                  src="/imagens/karen maquiagem principal.jpeg"
-                  alt="Serviços de maquiagem"
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                />
+                <div className="relative aspect-[4/5] overflow-hidden">
+
+                  <Image
+                    src="/imagens/karen maquiagem principal.jpeg"
+                    alt="Serviços de maquiagem"
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+
+                </div>
 
               </div>
 
