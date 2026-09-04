@@ -1,256 +1,708 @@
+import Image from "next/image";
 import Link from "next/link";
 
-const categorias = [
-  {
-    titulo: "Cabelos",
-    subtitulo: "Cuidados, cortes, tratamentos e transformação.",
-    servicos: [
-      ["Corte", "2 horas", "R$ 80,00", "Um corte pensado para valorizar seu estilo e sua personalidade."],
-      ["Corte franja", "15 minutos", "R$ 10,00", "Ajuste e renovação da franja."],
-      ["Escova", "2 horas", "R$ 80,00", "Finalização para deixar os cabelos ainda mais bonitos."],
-      ["Escova modelada", "A confirmar", "R$ 80,00", "Modelagem personalizada para a ocasião."],
-      ["Hidratação / Nutrição", "2h45", "R$ 80,00", "Tratamento para devolver maciez e vitalidade aos fios."],
-      ["Reconstrução", "1h50", "R$ 100,00", "Cuidado direcionado para fios que precisam de força e recuperação."],
-      ["Coloração", "2h30", "R$ 110,00", "Coloração realizada de acordo com o resultado desejado."],
-      ["Coloração + Corte", "1h50", "R$ 170,00", "Transformação completa para renovar o visual."],
-      ["Aplicação coloração + escova", "A confirmar", "R$ 80,00", "Aplicação e finalização dos cabelos."],
-      ["Progressiva / Selagem — Curto", "A confirmar", "R$ 180,00", "Tratamento para cabelos curtos."],
-      ["Progressiva / Selagem — Médio", "3h30", "R$ 220,00", "Tratamento para cabelos de comprimento médio."],
-      ["Progressiva / Selagem — Longo", "3h50", "R$ 280,00", "Tratamento para cabelos longos."],
-      ["Botox — Curto", "2 horas", "R$ 130,00", "Tratamento para cabelos curtos."],
-      ["Botox — Médio", "2h30", "R$ 200,00", "Tratamento para cabelos médios."],
-      ["Botox — Longo", "3 horas", "R$ 250,00", "Tratamento para cabelos longos."],
-      ["Mechas", "4 horas", "A partir de R$ 400,00", "Iluminação personalizada. O valor pode variar conforme comprimento, volume e técnica."],
-      ["Mechas Contorno", "3h30", "A partir de R$ 290,00", "Iluminação estratégica para valorizar o rosto."],
-      ["Luzes na touca", "A confirmar", "A partir de R$ 400,00", "Técnica tradicional de iluminação dos fios."],
-      ["Teste de mechas", "A confirmar", "Grátis", "Avaliação prévia para verificar a possibilidade do procedimento."],
-      ["Penteado", "A confirmar", "R$ 130,00", "Produção personalizada para ocasiões especiais."],
-    ],
-  },
-  {
-    titulo: "Sobrancelhas & Estética",
-    subtitulo: "Detalhes que valorizam sua beleza natural.",
-    servicos: [
-      ["Design de sobrancelha", "1h20", "R$ 35,00", "Design personalizado para harmonizar o olhar."],
-      ["Design de sobrancelha com henna", "1h40", "R$ 45,00", "Design acompanhado da aplicação de henna."],
-      ["Limpeza de pele", "1h45", "R$ 90,00", "Um momento de cuidado e renovação para a pele."],
-      ["Buço", "20 minutos", "R$ 15,00", "Remoção dos pelos da região do buço."],
-    ],
-  },
-  {
-    titulo: "Maquiagem",
-    subtitulo: "Produção para você se sentir ainda mais especial.",
-    servicos: [
-      ["Maquiagem", "1h45", "R$ 150,00", "Produção personalizada para valorizar sua beleza."],
-    ],
-  },
-];
-
-export default function Servicos() {
+export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white">
 
-      {/* HEADER */}
-      <header className="border-b border-[#d8a0a8]/30 bg-black">
+      {/* =========================
+          NAVBAR
+      ========================= */}
+      <header className="fixed top-0 z-50 w-full border-b border-[#C98A8A]/20 bg-black/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
 
-          <Link
-            href="/"
-            className="text-lg font-semibold tracking-[0.2em] text-[#d8a0a8] md:text-xl"
-          >
-            KAREN SALLA DESIGNER
+          <Link href="/" className="group">
+            <div className="text-xl font-light tracking-[0.25em] text-[#C98A8A]">
+              KAREN SALLA
+            </div>
+
+            <div className="mt-1 text-[9px] tracking-[0.35em] text-white/60">
+              DESIGNER
+            </div>
           </Link>
 
-          <nav className="flex items-center gap-4 text-sm md:gap-8">
+          <nav className="hidden items-center gap-8 md:flex">
 
             <Link
               href="/"
-              className="hidden transition hover:text-[#d8a0a8] sm:block"
+              className="text-sm text-white/80 transition hover:text-[#C98A8A]"
             >
               Início
             </Link>
 
             <Link
-              href="/servicos"
-              className="text-[#d8a0a8]"
-            >
-              Serviços
-            </Link>
-
-            <Link
-              href="/#sobre"
-              className="hidden transition hover:text-[#d8a0a8] sm:block"
+              href="#sobre"
+              className="text-sm text-white/80 transition hover:text-[#C98A8A]"
             >
               Sobre
             </Link>
 
             <Link
-              href="/agendar"
-              className="rounded-full border border-[#d8a0a8] px-5 py-2 text-[#d8a0a8] transition hover:bg-[#d8a0a8] hover:text-black"
+              href="/servicos"
+              className="text-sm text-white/80 transition hover:text-[#C98A8A]"
             >
-              Agendar
+              Serviços
+            </Link>
+
+            <Link
+              href="/agendar"
+              className="text-sm text-white/80 transition hover:text-[#C98A8A]"
+            >
+              Agendamento
+            </Link>
+
+            <Link
+              href="#contato"
+              className="text-sm text-white/80 transition hover:text-[#C98A8A]"
+            >
+              Contato
             </Link>
 
           </nav>
 
+          <Link
+            href="/agendar"
+            className="rounded-full border border-[#C98A8A] px-5 py-2.5 text-xs tracking-[0.15em] text-[#C98A8A] transition hover:bg-[#C98A8A] hover:text-black"
+          >
+            AGENDAR
+          </Link>
+
         </div>
       </header>
 
-      {/* INTRO */}
-      <section className="px-6 py-24 text-center">
 
-        <p className="text-sm uppercase tracking-[0.3em] text-[#d8a0a8]">
-          Studio Karen Salla
-        </p>
+      {/* =========================
+          HERO
+      ========================= */}
+      <section className="relative flex min-h-screen items-center overflow-hidden pt-24">
 
-        <h1 className="mt-4 text-5xl font-light md:text-6xl">
-          Serviços
-        </h1>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_40%,rgba(201,138,138,0.12),transparent_35%)]" />
 
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-          Cuidados pensados para valorizar sua beleza, respeitando seu
-          estilo e proporcionando uma experiência personalizada.
-        </p>
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-14 px-6 py-20 md:grid-cols-2">
 
-        <div className="mx-auto mt-10 h-px max-w-24 bg-[#d8a0a8]" />
+          <div className="relative z-10">
 
-      </section>
+            <p className="mb-6 text-xs tracking-[0.4em] text-[#C98A8A]">
+              KAREN SALLA DESIGNER
+            </p>
 
-      {/* CATEGORIAS */}
-      <section className="px-6 pb-28">
+            <h1 className="max-w-3xl text-5xl font-light leading-[1.05] tracking-tight md:text-7xl">
+              Beleza que
+              <br />
+              <span className="italic text-[#C98A8A]">
+                transforma
+              </span>
+              <br />
+              momentos.
+            </h1>
 
-        <div className="mx-auto max-w-6xl space-y-20">
+            <div className="mt-8 max-w-xl border-l border-[#C98A8A]/50 pl-5">
+              <p className="text-lg font-light leading-relaxed text-white/75">
+                Há mais de 20 anos, tenho o privilégio de trabalhar com aquilo
+                que amo.
+              </p>
+            </div>
 
-          {categorias.map((categoria) => (
+            <div className="mt-10 flex flex-wrap gap-4">
 
-            <div key={categoria.titulo}>
+              <Link
+                href="/agendar"
+                className="rounded-full bg-[#C98A8A] px-7 py-4 text-sm font-medium tracking-wide text-black transition hover:bg-[#E7B5B5]"
+              >
+                Agendar meu horário
+              </Link>
 
-              <div className="mb-8">
-
-                <p className="text-sm uppercase tracking-[0.25em] text-[#d8a0a8]">
-                  Categoria
-                </p>
-
-                <h2 className="mt-3 text-3xl font-light md:text-4xl">
-                  {categoria.titulo}
-                </h2>
-
-                <p className="mt-3 text-zinc-500">
-                  {categoria.subtitulo}
-                </p>
-
-              </div>
-
-              <div className="grid gap-4 md:grid-cols-2">
-
-                {categoria.servicos.map(
-                  ([nome, duracao, preco, descricao]) => (
-
-                    <div
-                      key={nome}
-                      className="group rounded-2xl border border-white/10 bg-zinc-950 p-6 transition hover:-translate-y-1 hover:border-[#d8a0a8]/50"
-                    >
-
-                      <div className="flex items-start justify-between gap-5">
-
-                        <div>
-
-                          <h3 className="text-lg font-medium">
-                            {nome}
-                          </h3>
-
-                          <p className="mt-2 text-sm leading-6 text-zinc-500">
-                            {descricao}
-                          </p>
-
-                        </div>
-
-                        <p className="whitespace-nowrap text-right text-base font-semibold text-[#d8a0a8]">
-                          {preco}
-                        </p>
-
-                      </div>
-
-                      <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-5">
-
-                        <p className="text-xs text-zinc-600">
-                          Duração: {duracao}
-                        </p>
-
-                        <Link
-                          href="/agendar"
-                          className="rounded-full border border-[#d8a0a8] px-5 py-2 text-xs font-semibold text-[#d8a0a8] transition hover:bg-[#d8a0a8] hover:text-black"
-                        >
-                          Agendar
-                        </Link>
-
-                      </div>
-
-                    </div>
-
-                  )
-                )}
-
-              </div>
+              <Link
+                href="/servicos"
+                className="rounded-full border border-white/25 px-7 py-4 text-sm tracking-wide text-white transition hover:border-[#C98A8A] hover:text-[#C98A8A]"
+              >
+                Conheça os serviços
+              </Link>
 
             </div>
 
-          ))}
+          </div>
+
+
+          {/* FOTO PRINCIPAL DA KAREN */}
+          <div className="relative mx-auto h-[560px] w-full max-w-md overflow-hidden rounded-t-[220px] border border-[#C98A8A]/30">
+
+            <Image
+              src="/imagens/karen cabelo principal.jpeg"
+              alt="Trabalho de Karen Salla"
+              fill
+              priority
+              className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* =========================
+          FRASE DE IMPACTO
+      ========================= */}
+      <section className="border-y border-white/10 bg-[#0b0b0b] px-6 py-24">
+
+        <div className="mx-auto max-w-5xl text-center">
+
+          <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
+            MAIS DO QUE BELEZA
+          </p>
+
+          <h2 className="mt-7 text-3xl font-light leading-relaxed md:text-5xl">
+            Ser cabeleireira vai muito além de
+            <span className="italic text-[#C98A8A]">
+              {" "}transformar cabelos.
+            </span>
+          </h2>
 
         </div>
 
       </section>
 
-      {/* OBSERVAÇÃO */}
-      <section className="px-6 pb-24">
 
-        <div className="mx-auto max-w-5xl rounded-3xl border border-[#d8a0a8]/20 bg-zinc-950 p-8 text-center md:p-12">
+      {/* =========================
+          SOBRE
+      ========================= */}
+      <section id="sobre" className="px-6 py-28">
 
-          <p className="text-sm uppercase tracking-[0.25em] text-[#d8a0a8]">
-            Importante
+        <div className="mx-auto grid max-w-7xl items-center gap-16 md:grid-cols-2">
+
+          {/* FOTO */}
+          <div className="relative h-[500px] overflow-hidden rounded-[180px_180px_0_0] border border-[#C98A8A]/30">
+
+            <Image
+              src="/imagens/karen cabelo 1.jpeg"
+              alt="Trabalho realizado por Karen Salla"
+              fill
+              className="object-cover"
+            />
+
+          </div>
+
+
+          <div>
+
+            <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
+              SOBRE A KAREN
+            </p>
+
+            <h2 className="mt-5 text-4xl font-light md:text-5xl">
+              Prazer,
+              <br />
+              <span className="italic text-[#C98A8A]">
+                eu sou a Karen.
+              </span>
+            </h2>
+
+            <div className="mt-8 space-y-5 text-base leading-8 text-white/65">
+
+              <p>
+                Minha história com a beleza começou ainda na infância.
+              </p>
+
+              <p>
+                Eu amava acompanhar minha mãe ao cabeleireiro e ficava
+                encantada observando cada detalhe.
+              </p>
+
+              <p>
+                O cuidado, os movimentos, o ambiente e aquele cheirinho dos
+                produtos despertavam em mim uma paixão.
+              </p>
+
+            </div>
+
+            <Link
+              href="#contato"
+              className="mt-8 inline-flex items-center text-sm tracking-wide text-[#C98A8A] transition hover:text-white"
+            >
+              Conheça minha história
+              <span className="ml-3 text-lg">
+                →
+              </span>
+            </Link>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* =========================
+          SERVIÇOS
+      ========================= */}
+      <section className="bg-[#0b0b0b] px-6 py-28">
+
+        <div className="mx-auto max-w-7xl">
+
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+
+            <div>
+
+              <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
+                SERVIÇOS
+              </p>
+
+              <h2 className="mt-5 text-4xl font-light md:text-5xl">
+                Cuidados pensados
+                <br />
+                <span className="italic text-[#C98A8A]">
+                  para você.
+                </span>
+              </h2>
+
+            </div>
+
+            <Link
+              href="/servicos"
+              className="text-sm tracking-wide text-white/60 transition hover:text-[#C98A8A]"
+            >
+              Ver todos os serviços →
+            </Link>
+
+          </div>
+
+
+          {/* 3 CATEGORIAS */}
+          <div className="mt-16 grid gap-6 md:grid-cols-3">
+
+            {/* CABELO */}
+            <Link
+              href="/servicos"
+              className="group overflow-hidden border border-white/10 bg-black"
+            >
+
+              <div className="relative h-[420px] overflow-hidden">
+
+                <Image
+                  src="/imagens/karen cabelo principal.jpeg"
+                  alt="Cabelo - Karen Salla Designer"
+                  fill
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
+                <div className="absolute bottom-0 left-0 p-8">
+
+                  <p className="text-xs tracking-[0.3em] text-[#E7B5B5]">
+                    01
+                  </p>
+
+                  <h3 className="mt-3 text-3xl font-light">
+                    Cabelo
+                  </h3>
+
+                  <p className="mt-3 text-sm text-white/60">
+                    Cortes, coloração, mechas e cuidados para os fios.
+                  </p>
+
+                  <span className="mt-5 block text-sm text-[#C98A8A]">
+                    Conhecer →
+                  </span>
+
+                </div>
+
+              </div>
+
+            </Link>
+
+
+            {/* MAQUIAGEM */}
+            <Link
+              href="/servicos"
+              className="group overflow-hidden border border-white/10 bg-black"
+            >
+
+              <div className="relative h-[420px] overflow-hidden">
+
+                <Image
+                  src="/imagens/karen maquiagem principal.jpeg"
+                  alt="Maquiagem - Karen Salla Designer"
+                  fill
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
+                <div className="absolute bottom-0 left-0 p-8">
+
+                  <p className="text-xs tracking-[0.3em] text-[#E7B5B5]">
+                    02
+                  </p>
+
+                  <h3 className="mt-3 text-3xl font-light">
+                    Maquiagem
+                  </h3>
+
+                  <p className="mt-3 text-sm text-white/60">
+                    Produções pensadas para valorizar sua beleza.
+                  </p>
+
+                  <span className="mt-5 block text-sm text-[#C98A8A]">
+                    Conhecer →
+                  </span>
+
+                </div>
+
+              </div>
+
+            </Link>
+
+
+            {/* SOBRANCELHAS */}
+            <Link
+              href="/servicos"
+              className="group overflow-hidden border border-white/10 bg-black"
+            >
+
+              <div className="relative h-[420px] overflow-hidden">
+
+                <Image
+                  src="/imagens/karen sobrancelhas principal.jpeg"
+                  alt="Sobrancelhas - Karen Salla Designer"
+                  fill
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
+                <div className="absolute bottom-0 left-0 p-8">
+
+                  <p className="text-xs tracking-[0.3em] text-[#E7B5B5]">
+                    03
+                  </p>
+
+                  <h3 className="mt-3 text-3xl font-light">
+                    Sobrancelhas
+                  </h3>
+
+                  <p className="mt-3 text-sm text-white/60">
+                    Design e cuidados para valorizar o seu olhar.
+                  </p>
+
+                  <span className="mt-5 block text-sm text-[#C98A8A]">
+                    Conhecer →
+                  </span>
+
+                </div>
+
+              </div>
+
+            </Link>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* =========================
+          JEITO KAREN
+      ========================= */}
+      <section className="px-6 py-32">
+
+        <div className="mx-auto max-w-4xl text-center">
+
+          <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
+            O JEITO KAREN DE CUIDAR
           </p>
 
-          <h2 className="mt-4 text-3xl font-light">
-            Cada atendimento é único
+          <blockquote className="mt-10 text-3xl font-light leading-relaxed md:text-5xl">
+            “Amo fazer parte da vida de cada cliente,
+            proporcionar momentos de cuidado,
+            arrancar sorrisos...”
+          </blockquote>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================
+          GALERIA / PORTFÓLIO
+      ========================= */}
+      <section className="bg-[#0b0b0b] px-6 py-28">
+
+        <div className="mx-auto max-w-7xl">
+
+          <div className="mb-14">
+
+            <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
+              PORTFÓLIO
+            </p>
+
+            <h2 className="mt-5 text-4xl font-light md:text-5xl">
+              Um pouco do
+              <span className="italic text-[#C98A8A]">
+                {" "}meu trabalho.
+              </span>
+            </h2>
+
+            <p className="mt-5 max-w-xl text-sm leading-7 text-white/45">
+              Alguns dos trabalhos realizados ao longo dessa trajetória.
+            </p>
+
+          </div>
+
+
+          {/* GALERIA */}
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+
+            {/* FOTO GRANDE */}
+            <div className="relative col-span-2 row-span-2 h-[620px] overflow-hidden">
+              <Image
+                src="/imagens/karen cabelo 1.jpeg"
+                alt="Trabalho de cabelo"
+                fill
+                className="object-cover transition duration-700 hover:scale-105"
+              />
+            </div>
+
+
+            {/* FOTO 2 */}
+            <div className="relative h-[300px] overflow-hidden">
+              <Image
+                src="/imagens/karen cabelo 2.jpeg"
+                alt="Trabalho de cabelo"
+                fill
+                className="object-cover transition duration-700 hover:scale-105"
+              />
+            </div>
+
+
+            {/* FOTO 3 */}
+            <div className="relative h-[300px] overflow-hidden">
+              <Image
+                src="/imagens/karen cabelo 3.jpeg"
+                alt="Trabalho de cabelo"
+                fill
+                className="object-cover transition duration-700 hover:scale-105"
+              />
+            </div>
+
+
+            {/* MAQUIAGEM */}
+            <div className="relative h-[300px] overflow-hidden">
+              <Image
+                src="/imagens/karen maquiagem 2.jpeg"
+                alt="Trabalho de maquiagem"
+                fill
+                className="object-cover transition duration-700 hover:scale-105"
+              />
+            </div>
+
+
+            {/* MAQUIAGEM 2 */}
+            <div className="relative h-[300px] overflow-hidden">
+              <Image
+                src="/imagens/karen maquiagem principal 1.jpeg"
+                alt="Trabalho de maquiagem"
+                fill
+                className="object-cover transition duration-700 hover:scale-105"
+              />
+            </div>
+
+          </div>
+
+
+          <div className="mt-10 text-center">
+
+            <Link
+              href="/servicos"
+              className="inline-flex rounded-full border border-[#C98A8A] px-7 py-4 text-sm tracking-wide text-[#C98A8A] transition hover:bg-[#C98A8A] hover:text-black"
+            >
+              Conheça todos os serviços
+            </Link>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================
+          DEPOIMENTOS
+      ========================= */}
+      <section id="depoimentos" className="px-6 py-28">
+
+        <div className="mx-auto max-w-7xl">
+
+          <div className="text-center">
+
+            <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
+              EXPERIÊNCIAS
+            </p>
+
+            <h2 className="mt-5 text-4xl font-light md:text-5xl">
+              O que minhas
+              <span className="italic text-[#C98A8A]">
+                {" "}clientes dizem.
+              </span>
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/45">
+              Em breve, histórias reais de clientes que fazem parte dessa
+              trajetória.
+            </p>
+
+          </div>
+
+
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
+
+            <div className="min-h-[220px] border border-white/10 p-8">
+              <span className="text-xs tracking-[0.2em] text-[#C98A8A]">
+                DEPOIMENTO
+              </span>
+            </div>
+
+            <div className="min-h-[220px] border border-white/10 p-8">
+              <span className="text-xs tracking-[0.2em] text-[#C98A8A]">
+                DEPOIMENTO
+              </span>
+            </div>
+
+            <div className="min-h-[220px] border border-white/10 p-8">
+              <span className="text-xs tracking-[0.2em] text-[#C98A8A]">
+                DEPOIMENTO
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* =========================
+          CTA FINAL
+      ========================= */}
+      <section className="relative overflow-hidden border-y border-[#C98A8A]/20 bg-[#100d09] px-6 py-32">
+
+        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C98A8A]/5 blur-3xl" />
+
+        <div className="relative mx-auto max-w-4xl text-center">
+
+          <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
+            SUA VEZ
+          </p>
+
+          <h2 className="mt-7 text-4xl font-light leading-tight md:text-6xl">
+            Hoje, cada cliente que senta na minha cadeira
+            <span className="italic text-[#C98A8A]">
+              {" "}faz parte dessa história.
+            </span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl leading-7 text-zinc-500">
-            Alguns procedimentos podem ter seu tempo e valor ajustados
-            conforme comprimento, volume, técnica escolhida e necessidade
-            dos cabelos. Em caso de dúvida, entre em contato antes de
-            realizar o agendamento.
+          <p className="mx-auto mt-8 max-w-xl text-white/50">
+            Seu próximo momento começa aqui.
           </p>
 
           <Link
             href="/agendar"
-            className="mt-8 inline-block rounded-full bg-[#d8a0a8] px-9 py-4 font-semibold text-black transition hover:scale-105"
+            className="mt-10 inline-flex rounded-full bg-[#C98A8A] px-8 py-4 text-sm font-medium tracking-wide text-black transition hover:bg-[#E7B5B5]"
           >
-            Escolher meu horário
+            Agendar meu horário
           </Link>
 
         </div>
 
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-white/10 px-6 py-10">
 
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
+      {/* =========================
+          FOOTER
+      ========================= */}
+      <footer id="contato" className="border-t border-white/10 bg-black px-6 py-16">
+
+        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-3">
 
           <div>
 
-            <p className="tracking-[0.2em] text-[#d8a0a8]">
-              KAREN SALLA DESIGNER
+            <div className="text-xl font-light tracking-[0.25em] text-[#C98A8A]">
+              KAREN SALLA
+            </div>
+
+            <p className="mt-2 text-[9px] tracking-[0.35em] text-white/40">
+              DESIGNER
             </p>
 
-            <p className="mt-2 text-xs text-zinc-600">
-              Beleza, experiência e cuidado em cada detalhe.
+            <p className="mt-6 max-w-sm text-sm leading-7 text-white/40">
+              Beleza, cuidado e momentos especiais em cada atendimento.
             </p>
 
           </div>
 
-          <p className="text-xs text-zinc-600">
-            © 2026 Karen Salla Designer.
+
+          <div>
+
+            <p className="text-xs tracking-[0.3em] text-[#C98A8A]">
+              NAVEGAÇÃO
+            </p>
+
+            <div className="mt-6 flex flex-col gap-3 text-sm text-white/50">
+
+              <Link
+                href="/"
+                className="transition hover:text-[#C98A8A]"
+              >
+                Início
+              </Link>
+
+              <Link
+                href="/servicos"
+                className="transition hover:text-[#C98A8A]"
+              >
+                Serviços
+              </Link>
+
+              <Link
+                href="/agendar"
+                className="transition hover:text-[#C98A8A]"
+              >
+                Agendamento
+              </Link>
+
+            </div>
+
+          </div>
+
+
+          <div>
+
+            <p className="text-xs tracking-[0.3em] text-[#C98A8A]">
+              AGENDAMENTO
+            </p>
+
+            <p className="mt-6 text-sm leading-7 text-white/50">
+              Escolha seu serviço e encontre o melhor horário para você.
+            </p>
+
+            <Link
+              href="/agendar"
+              className="mt-5 inline-block text-sm text-[#C98A8A] transition hover:text-white"
+            >
+              Agendar horário →
+            </Link>
+
+          </div>
+
+        </div>
+
+
+        <div className="mx-auto mt-16 max-w-7xl border-t border-white/10 pt-8">
+
+          <p className="text-center text-xs text-white/25">
+            © {new Date().getFullYear()} Karen Salla Designer. Todos os
+            direitos reservados.
           </p>
 
         </div>
