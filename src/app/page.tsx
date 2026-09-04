@@ -41,7 +41,7 @@ export default function Home() {
             </Link>
 
             <Link
-              href="/agendamento"
+              href="/agendar"
               className="text-sm text-white/80 transition hover:text-[#C98A8A]"
             >
               Agendamento
@@ -56,7 +56,7 @@ export default function Home() {
           </nav>
 
           <Link
-            href="/agendamento"
+            href="/agendar"
             className="rounded-full border border-[#C98A8A] px-5 py-2.5 text-xs tracking-[0.15em] text-[#C98A8A] transition hover:bg-[#C98A8A] hover:text-black"
           >
             AGENDAR
@@ -98,7 +98,7 @@ export default function Home() {
             <div className="mt-10 flex flex-wrap gap-4">
 
               <Link
-                href="/agendamento"
+                href="/agendar"
                 className="rounded-full bg-[#C98A8A] px-7 py-4 text-sm font-medium tracking-wide text-black transition hover:bg-[#E7B5B5]"
               >
                 Agendar meu horário
@@ -505,7 +505,7 @@ export default function Home() {
           </p>
 
           <Link
-            href="/agendamento"
+            href="/agendar"
             className="mt-10 inline-flex rounded-full bg-[#C98A8A] px-8 py-4 text-sm font-medium tracking-wide text-black transition hover:bg-[#E7B5B5]"
           >
             Agendar meu horário
@@ -561,7 +561,7 @@ export default function Home() {
               </Link>
 
               <Link
-                href="/agendamento"
+                href="/agendar"
                 className="transition hover:text-[#C98A8A]"
               >
                 Agendamento
@@ -583,7 +583,7 @@ export default function Home() {
             </p>
 
             <Link
-              href="/agendamento"
+              href="/agendar"
               className="mt-5 inline-block text-sm text-[#C98A8A] transition hover:text-white"
             >
               Agendar horário →
