@@ -1,4 +1,3 @@
-```tsx
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,6 +18,7 @@ export default function Home() {
           </Link>
 
           <nav className="hidden items-center gap-8 text-sm md:flex">
+
             <Link
               href="/"
               className="transition hover:text-[#C98A8A]"
@@ -53,6 +53,7 @@ export default function Home() {
             >
               Contato
             </Link>
+
           </nav>
 
           <Link
@@ -113,7 +114,6 @@ export default function Home() {
           {/* FOTO DA KAREN — AGUARDANDO FOTO REAL */}
 
           <div className="relative min-h-[500px] overflow-hidden rounded-3xl border border-white/10 bg-zinc-950">
-
           </div>
 
         </div>
@@ -149,7 +149,6 @@ export default function Home() {
           {/* FOTO DA KAREN — AGUARDANDO FOTO REAL */}
 
           <div className="relative min-h-[500px] overflow-hidden rounded-3xl border border-white/10 bg-zinc-950">
-
           </div>
 
           <div>
@@ -185,8 +184,6 @@ export default function Home() {
               </p>
 
             </div>
-
-            {/* BOTÃO → NOVA PÁGINA DA HISTÓRIA */}
 
             <Link
               href="/historia"
@@ -548,4 +545,3 @@ export default function Home() {
     </main>
   );
 }
-```
