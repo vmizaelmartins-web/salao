@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 const services = [
@@ -179,15 +179,39 @@ const availableTimes = [
   "18:00",
 ];
 
+type Bloqueio = {
+  id: number;
+  data_bloqueio: string;
+  horario: string | null;
+  dia_inteiro: boolean;
+  motivo: string | null;
+};
+
+type AgendamentoExistente = {
+  id: number;
+  horario: string;
+  duracao_total: number | null;
+  status: string;
+};
+
 export default function Agendar() {
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [name, setName] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+
   const [confirmed, setConfirmed] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState("");
+
+  const [bloqueios, setBloqueios] = useState<Bloqueio[]>([]);
+  const [agendamentosExistentes, setAgendamentosExistentes] =
+    useState<AgendamentoExistente[]>([]);
+
+  const [carregandoHorarios, setCarregandoHorarios] =
+    useState(false);
 
   const allServices = services.flatMap((category) => category.items);
 
@@ -251,6 +275,183 @@ export default function Agendar() {
 
   const today = new Date().toISOString().split("T")[0];
 
+  /*
+   * Verifica se dois intervalos de horário se sobrepõem.
+   *
+   * Exemplo:
+   * Atendimento 14:00 às 16:00
+   * Outro atendimento 15:00 às 17:00
+   *
+   * Existe conflito.
+   */
+  function existeConflitoDeHorario(
+    horarioInicio: string,
+    duracaoMinutos: number,
+    outroHorario: string,
+    outraDuracaoMinutos: number | null
+  ) {
+    const [horaInicio, minutoInicio] = horarioInicio
+      .slice(0, 5)
+      .split(":")
+      .map(Number);
+
+    const [outroHoraInicio, outroMinutoInicio] = outroHorario
+      .slice(0, 5)
+      .split(":")
+      .map(Number);
+
+    const inicio = horaInicio * 60 + minutoInicio;
+
+    const outroInicio =
+      outroHoraInicio * 60 + outroMinutoInicio;
+
+    const fim = inicio + duracaoMinutos;
+
+    const outraFim =
+      outroInicio + (outraDuracaoMinutos || 60);
+
+    return inicio < outraFim && outroInicio < fim;
+  }
+
+  function horarioEstaBloqueado(time: string) {
+    const bloqueioDoDia = bloqueios.some(
+      (bloqueio) =>
+        bloqueio.dia_inteiro &&
+        bloqueio.data_bloqueio === selectedDate
+    );
+
+    if (bloqueioDoDia) {
+      return true;
+    }
+
+    const bloqueioDoHorario = bloqueios.some(
+      (bloqueio) =>
+        !bloqueio.dia_inteiro &&
+        bloqueio.data_bloqueio === selectedDate &&
+        bloqueio.horario?.slice(0, 5) === time
+    );
+
+    if (bloqueioDoHorario) {
+      return true;
+    }
+
+    if (totalDurationMinutes > 0) {
+      const conflitoComOutroAgendamento =
+        agendamentosExistentes.some((agendamento) => {
+          if (
+            agendamento.status === "cancelado" ||
+            agendamento.status === "concluido"
+          ) {
+            return false;
+          }
+
+          return existeConflitoDeHorario(
+            time,
+            totalDurationMinutes,
+            agendamento.horario,
+            agendamento.duracao_total
+          );
+        });
+
+      if (conflitoComOutroAgendamento) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  const horariosDisponiveis = useMemo(() => {
+    if (!selectedDate) {
+      return availableTimes;
+    }
+
+    return availableTimes.filter(
+      (time) => !horarioEstaBloqueado(time)
+    );
+  }, [
+    selectedDate,
+    bloqueios,
+    agendamentosExistentes,
+    totalDurationMinutes,
+  ]);
+
+  async function carregarDisponibilidade(data: string) {
+    if (!data) {
+      setBloqueios([]);
+      setAgendamentosExistentes([]);
+      return;
+    }
+
+    try {
+      setCarregandoHorarios(true);
+      setErrorMessage("");
+
+      const supabase = createClient();
+
+      const [
+        { data: bloqueiosData, error: bloqueiosError },
+        { data: agendamentosData, error: agendamentosError },
+      ] = await Promise.all([
+        supabase
+          .from("bloqueios_agenda")
+          .select(
+            "id, data_bloqueio, horario, dia_inteiro, motivo"
+          )
+          .eq("data_bloqueio", data),
+
+        supabase
+          .from("agendamentos")
+          .select(
+            "id, horario, duracao_total, status"
+          )
+          .eq("data_agendamento", data),
+      ]);
+
+      if (bloqueiosError) {
+        console.error(
+          "ERRO AO BUSCAR BLOQUEIOS:",
+          bloqueiosError
+        );
+
+        setErrorMessage(
+          "Não foi possível verificar a disponibilidade."
+        );
+
+        return;
+      }
+
+      if (agendamentosError) {
+        console.error(
+          "ERRO AO BUSCAR AGENDAMENTOS:",
+          agendamentosError
+        );
+
+        setErrorMessage(
+          "Não foi possível verificar os horários."
+        );
+
+        return;
+      }
+
+      setBloqueios((bloqueiosData as Bloqueio[]) || []);
+
+      setAgendamentosExistentes(
+        (agendamentosData as AgendamentoExistente[]) || []
+      );
+
+      setSelectedTime("");
+    } catch (error) {
+      console.error("ERRO AO CARREGAR DISPONIBILIDADE:", error);
+
+      setErrorMessage(
+        "Não foi possível carregar os horários disponíveis."
+      );
+    } finally {
+      setCarregandoHorarios(false);
+    }
+  }
+
   function toggleService(serviceName: string) {
     setSelectedServices((current) => {
       if (current.includes(serviceName)) {
@@ -261,7 +462,9 @@ export default function Agendar() {
     });
   }
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(
+    event: React.FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
 
     setErrorMessage("");
@@ -273,7 +476,9 @@ export default function Agendar() {
       !name.trim() ||
       !whatsapp.trim()
     ) {
-      setErrorMessage("Preencha todos os campos antes de confirmar.");
+      setErrorMessage(
+        "Preencha todos os campos antes de confirmar."
+      );
       return;
     }
 
@@ -282,21 +487,111 @@ export default function Agendar() {
 
       const supabase = createClient();
 
-      const { error } = await supabase.from("agendamentos").insert({
-        nome_cliente: name.trim(),
-        telefone: whatsapp.trim(),
-        servicos: selectedServices,
-        data_agendamento: selectedDate,
-        horario: selectedTime,
-        valor_total: totalPrice,
-        duracao_total: totalDurationMinutes,
-        status: "pendente",
-      });
+      /*
+       * Antes de salvar, verificamos novamente o horário.
+       *
+       * Isso evita que duas clientes tentem reservar
+       * o mesmo horário ao mesmo tempo.
+       */
+
+      const { data: bloqueiosAtualizados, error: erroBloqueios } =
+        await supabase
+          .from("bloqueios_agenda")
+          .select(
+            "id, data_bloqueio, horario, dia_inteiro, motivo"
+          )
+          .eq("data_bloqueio", selectedDate);
+
+      if (erroBloqueios) {
+        setErrorMessage(
+          "Não foi possível verificar a disponibilidade. Tente novamente."
+        );
+        return;
+      }
+
+      const bloqueiosAtuais =
+        (bloqueiosAtualizados as Bloqueio[]) || [];
+
+      const diaBloqueado = bloqueiosAtuais.some(
+        (bloqueio) => bloqueio.dia_inteiro
+      );
+
+      const horarioBloqueado = bloqueiosAtuais.some(
+        (bloqueio) =>
+          !bloqueio.dia_inteiro &&
+          bloqueio.horario?.slice(0, 5) === selectedTime
+      );
+
+      if (diaBloqueado || horarioBloqueado) {
+        setErrorMessage(
+          "Esse horário acabou de ficar indisponível. Escolha outro horário."
+        );
+
+        await carregarDisponibilidade(selectedDate);
+
+        return;
+      }
+
+      const { data: agendamentosAtualizados, error: erroAgendamentos } =
+        await supabase
+          .from("agendamentos")
+          .select(
+            "id, horario, duracao_total, status"
+          )
+          .eq("data_agendamento", selectedDate)
+          .neq("status", "cancelado")
+          .neq("status", "concluido");
+
+      if (erroAgendamentos) {
+        setErrorMessage(
+          "Não foi possível verificar os horários ocupados."
+        );
+        return;
+      }
+
+      const agendamentosAtuais =
+        (agendamentosAtualizados as AgendamentoExistente[]) ||
+        [];
+
+      const existeConflito = agendamentosAtuais.some(
+        (agendamento) =>
+          existeConflitoDeHorario(
+            selectedTime,
+            totalDurationMinutes,
+            agendamento.horario,
+            agendamento.duracao_total
+          )
+      );
+
+      if (existeConflito) {
+        setErrorMessage(
+          "Esse horário já está ocupado. Escolha outro horário."
+        );
+
+        await carregarDisponibilidade(selectedDate);
+
+        return;
+      }
+
+      const { error } = await supabase
+        .from("agendamentos")
+        .insert({
+          nome_cliente: name.trim(),
+          telefone: whatsapp.trim(),
+          servicos: selectedServices,
+          data_agendamento: selectedDate,
+          horario: selectedTime,
+          valor_total: totalPrice,
+          duracao_total: totalDurationMinutes,
+          status: "pendente",
+        });
 
       if (error) {
         console.error("ERRO SUPABASE:", error);
 
-        setErrorMessage(`Erro ao registrar: ${error.message}`);
+        setErrorMessage(
+          `Erro ao registrar: ${error.message}`
+        );
 
         return;
       }
@@ -306,7 +601,9 @@ export default function Agendar() {
       console.error("ERRO:", error);
 
       if (error instanceof Error) {
-        setErrorMessage(`Erro ao registrar: ${error.message}`);
+        setErrorMessage(
+          `Erro ao registrar: ${error.message}`
+        );
       } else {
         setErrorMessage(
           "Ocorreu um erro ao registrar o agendamento. Tente novamente."
@@ -316,6 +613,29 @@ export default function Agendar() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (!selectedDate) {
+      return;
+    }
+
+    carregarDisponibilidade(selectedDate);
+  }, [selectedDate]);
+
+  useEffect(() => {
+    if (!selectedTime) {
+      return;
+    }
+
+    if (horarioEstaBloqueado(selectedTime)) {
+      setSelectedTime("");
+    }
+  }, [
+    bloqueios,
+    agendamentosExistentes,
+    totalDurationMinutes,
+    selectedTime,
+  ]);
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -329,7 +649,10 @@ export default function Agendar() {
           </a>
 
           <nav className="hidden gap-8 text-sm md:flex">
-            <a href="/" className="transition hover:text-[#d8a0a8]">
+            <a
+              href="/"
+              className="transition hover:text-[#d8a0a8]"
+            >
               Início
             </a>
 
@@ -347,7 +670,10 @@ export default function Agendar() {
               Sobre
             </a>
 
-            <a href="/agendar" className="text-[#d8a0a8]">
+            <a
+              href="/agendar"
+              className="text-[#d8a0a8]"
+            >
               Agendar
             </a>
           </nav>
@@ -375,8 +701,8 @@ export default function Agendar() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl leading-7 text-zinc-400">
-            Escolha um ou mais procedimentos, encontre a melhor data
-            e reserve seu momento.
+            Escolha um ou mais procedimentos, encontre a melhor
+            data e reserve seu momento.
           </p>
         </div>
       </section>
@@ -390,7 +716,9 @@ export default function Agendar() {
             <div className="space-y-8">
               <div className="rounded-3xl border border-white/10 bg-zinc-950 p-6 md:p-8">
                 <div className="mb-7">
-                  <span className="text-sm text-[#d8a0a8]">01</span>
+                  <span className="text-sm text-[#d8a0a8]">
+                    01
+                  </span>
 
                   <h2 className="mt-1 text-2xl font-light">
                     Escolha seus serviços
@@ -411,13 +739,17 @@ export default function Agendar() {
                       <div className="space-y-3">
                         {category.items.map((service) => {
                           const isSelected =
-                            selectedServices.includes(service.name);
+                            selectedServices.includes(
+                              service.name
+                            );
 
                           return (
                             <button
                               type="button"
                               key={service.name}
-                              onClick={() => toggleService(service.name)}
+                              onClick={() =>
+                                toggleService(service.name)
+                              }
                               className={`flex w-full items-center gap-4 rounded-2xl border p-4 text-left transition ${
                                 isSelected
                                   ? "border-[#d8a0a8] bg-[#d8a0a8]/10"
@@ -468,7 +800,9 @@ export default function Agendar() {
 
               <div className="rounded-3xl border border-white/10 bg-zinc-950 p-6 md:p-8">
                 <div className="mb-6">
-                  <span className="text-sm text-[#d8a0a8]">02</span>
+                  <span className="text-sm text-[#d8a0a8]">
+                    02
+                  </span>
 
                   <h2 className="mt-1 text-2xl font-light">
                     Escolha a data
@@ -484,43 +818,103 @@ export default function Agendar() {
                   }
                   className="w-full rounded-xl border border-white/10 bg-black px-4 py-4 text-white outline-none transition focus:border-[#d8a0a8]"
                 />
+
+                {selectedDate &&
+                  bloqueios.some(
+                    (bloqueio) =>
+                      bloqueio.dia_inteiro &&
+                      bloqueio.data_bloqueio === selectedDate
+                  ) && (
+                    <div className="mt-4 rounded-xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-300">
+                      Esta data não possui atendimento disponível.
+                      Escolha outra data.
+                    </div>
+                  )}
               </div>
 
               <div className="rounded-3xl border border-white/10 bg-zinc-950 p-6 md:p-8">
                 <div className="mb-6">
-                  <span className="text-sm text-[#d8a0a8]">03</span>
+                  <span className="text-sm text-[#d8a0a8]">
+                    03
+                  </span>
 
                   <h2 className="mt-1 text-2xl font-light">
                     Escolha o horário
                   </h2>
 
                   <p className="mt-2 text-sm text-zinc-500">
-                    Os horários disponíveis serão ajustados quando
-                    conectarmos o sistema à agenda real.
+                    Os horários ocupados ou bloqueados não ficam
+                    disponíveis para agendamento.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
-                  {availableTimes.map((time) => (
-                    <button
-                      type="button"
-                      key={time}
-                      onClick={() => setSelectedTime(time)}
-                      className={`rounded-xl border px-4 py-3 text-sm transition ${
-                        selectedTime === time
-                          ? "border-[#d8a0a8] bg-[#d8a0a8] text-black"
-                          : "border-white/10 bg-black text-white hover:border-[#d8a0a8]/60"
-                      }`}
-                    >
-                      {time}
-                    </button>
-                  ))}
-                </div>
+                {!selectedDate ? (
+                  <div className="rounded-xl border border-white/10 bg-black p-5 text-center text-sm text-zinc-500">
+                    Primeiro escolha uma data.
+                  </div>
+                ) : carregandoHorarios ? (
+                  <div className="rounded-xl border border-white/10 bg-black p-5 text-center text-sm text-zinc-500">
+                    Verificando horários disponíveis...
+                  </div>
+                ) : horariosDisponiveis.length === 0 ? (
+                  <div className="rounded-xl border border-red-500/20 bg-red-500/10 p-5 text-center text-sm text-red-300">
+                    Não há horários disponíveis nesta data.
+                    Escolha outra data.
+                  </div>
+                ) : (
+                  <>
+                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+                      {availableTimes.map((time) => {
+                        const indisponivel =
+                          horarioEstaBloqueado(time);
+
+                        return (
+                          <button
+                            type="button"
+                            key={time}
+                            disabled={indisponivel}
+                            onClick={() =>
+                              setSelectedTime(time)
+                            }
+                            className={`rounded-xl border px-4 py-3 text-sm transition ${
+                              indisponivel
+                                ? "cursor-not-allowed border-white/5 bg-zinc-900 text-zinc-700 line-through"
+                                : selectedTime === time
+                                ? "border-[#d8a0a8] bg-[#d8a0a8] text-black"
+                                : "border-white/10 bg-black text-white hover:border-[#d8a0a8]/60"
+                            }`}
+                          >
+                            {time}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="mt-5 flex flex-wrap gap-4 text-xs text-zinc-500">
+                      <div className="flex items-center gap-2">
+                        <span className="h-3 w-3 rounded-full border border-white/20 bg-black" />
+                        Disponível
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <span className="h-3 w-3 rounded-full bg-zinc-800" />
+                        Indisponível
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <span className="h-3 w-3 rounded-full bg-[#d8a0a8]" />
+                        Selecionado
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
 
               <div className="rounded-3xl border border-white/10 bg-zinc-950 p-6 md:p-8">
                 <div className="mb-6">
-                  <span className="text-sm text-[#d8a0a8]">04</span>
+                  <span className="text-sm text-[#d8a0a8]">
+                    04
+                  </span>
 
                   <h2 className="mt-1 text-2xl font-light">
                     Seus dados
@@ -537,7 +931,9 @@ export default function Agendar() {
                       type="text"
                       placeholder="Digite seu nome"
                       value={name}
-                      onChange={(event) => setName(event.target.value)}
+                      onChange={(event) =>
+                        setName(event.target.value)
+                      }
                       className="w-full rounded-xl border border-white/10 bg-black px-4 py-4 text-white placeholder:text-zinc-600 outline-none transition focus:border-[#d8a0a8]"
                     />
                   </div>
@@ -651,7 +1047,9 @@ export default function Agendar() {
                 <div className="my-6 h-px bg-white/10" />
 
                 <div className="flex items-center justify-between">
-                  <span className="text-zinc-400">Total</span>
+                  <span className="text-zinc-400">
+                    Total
+                  </span>
 
                   <span className="text-2xl font-semibold text-[#d8a0a8]">
                     R$ {totalPrice.toFixed(2).replace(".", ",")}
@@ -675,7 +1073,8 @@ export default function Agendar() {
                 </button>
 
                 <p className="mt-4 text-center text-xs leading-5 text-zinc-500">
-                  Confira todos os dados antes de confirmar seu horário.
+                  Confira todos os dados antes de confirmar seu
+                  horário.
                 </p>
               </div>
             </aside>
@@ -699,11 +1098,14 @@ export default function Agendar() {
             </h2>
 
             <p className="mt-4 leading-7 text-zinc-400">
-              Obrigada, {name}! Sua solicitação de horário foi registrada.
+              Obrigada, {name}! Sua solicitação de horário foi
+              registrada.
             </p>
 
             <div className="mt-6 rounded-2xl border border-white/10 bg-black p-5 text-left">
-              <p className="text-sm text-zinc-500">Serviços</p>
+              <p className="text-sm text-zinc-500">
+                Serviços
+              </p>
 
               <div className="mt-2 space-y-2">
                 {selectedServiceDetails.map((service) => (
@@ -737,7 +1139,9 @@ export default function Agendar() {
                 às {selectedTime}
               </p>
 
-              <p className="mt-4 text-sm text-zinc-500">Total</p>
+              <p className="mt-4 text-sm text-zinc-500">
+                Total
+              </p>
 
               <p className="mt-1 text-xl font-semibold text-[#d8a0a8]">
                 R$ {totalPrice.toFixed(2).replace(".", ",")}
