@@ -6,32 +6,16 @@ const categorias = [
     numero: "01",
     titulo: "Cabelos",
     frase: "Cuidado, transformação e personalidade em cada detalhe.",
-    imagem: "/imagens/karen cabelo 2.jpeg",
+    imagem: "/imagens/karen cabelo 1.jpeg",
     servicos: [
       { nome: "Corte", tempo: "2h", preco: "R$ 80" },
       { nome: "Corte franja", tempo: "15min", preco: "R$ 10" },
       { nome: "Escova", tempo: "2h", preco: "R$ 80" },
       { nome: "Escova modelada", tempo: "A confirmar", preco: "R$ 80" },
-      {
-        nome: "Hidratação / Nutrição",
-        tempo: "2h45",
-        preco: "R$ 80",
-      },
-      {
-        nome: "Reconstrução",
-        tempo: "1h50",
-        preco: "R$ 100",
-      },
-      {
-        nome: "Coloração",
-        tempo: "2h30",
-        preco: "R$ 110",
-      },
-      {
-        nome: "Coloração + Corte",
-        tempo: "1h50",
-        preco: "R$ 170",
-      },
+      { nome: "Hidratação / Nutrição", tempo: "2h45", preco: "R$ 80" },
+      { nome: "Reconstrução", tempo: "1h50", preco: "R$ 100" },
+      { nome: "Coloração", tempo: "2h30", preco: "R$ 110" },
+      { nome: "Coloração + Corte", tempo: "1h50", preco: "R$ 170" },
       {
         nome: "Aplicação coloração + escova",
         tempo: "A confirmar",
@@ -52,31 +36,11 @@ const categorias = [
         tempo: "3h50",
         preco: "R$ 280",
       },
-      {
-        nome: "Botox — Curto",
-        tempo: "2h",
-        preco: "R$ 130",
-      },
-      {
-        nome: "Botox — Médio",
-        tempo: "2h30",
-        preco: "R$ 200",
-      },
-      {
-        nome: "Botox — Longo",
-        tempo: "3h",
-        preco: "R$ 250",
-      },
-      {
-        nome: "Mechas",
-        tempo: "4h",
-        preco: "R$ 400",
-      },
-      {
-        nome: "Mechas Contorno",
-        tempo: "3h30",
-        preco: "R$ 290",
-      },
+      { nome: "Botox — Curto", tempo: "2h", preco: "R$ 130" },
+      { nome: "Botox — Médio", tempo: "2h30", preco: "R$ 200" },
+      { nome: "Botox — Longo", tempo: "3h", preco: "R$ 250" },
+      { nome: "Mechas", tempo: "4h", preco: "R$ 400" },
+      { nome: "Mechas Contorno", tempo: "3h30", preco: "R$ 290" },
       {
         nome: "Luzes na touca",
         tempo: "A confirmar",
@@ -87,30 +51,11 @@ const categorias = [
         tempo: "A confirmar",
         preco: "Grátis",
       },
-      {
-        nome: "Penteado",
-        tempo: "A confirmar",
-        preco: "R$ 130",
-      },
+      { nome: "Penteado", tempo: "A confirmar", preco: "R$ 130" },
     ],
   },
-
   {
     numero: "02",
-    titulo: "Maquiagem",
-    frase: "Realçando sua beleza para momentos que merecem ser lembrados.",
-    imagem: "/imagens/karen maquiagem principal 1.jpeg",
-    servicos: [
-      {
-        nome: "Maquiagem",
-        tempo: "1h45",
-        preco: "R$ 150",
-      },
-    ],
-  },
-
-  {
-    numero: "03",
     titulo: "Sobrancelhas & Estética",
     frase: "Pequenos detalhes que fazem toda a diferença.",
     imagem: "/imagens/karen sobrancelhas principal.jpeg",
@@ -137,16 +82,27 @@ const categorias = [
       },
     ],
   },
+  {
+    numero: "03",
+    titulo: "Maquiagem",
+    frase: "Realçando sua beleza para momentos que merecem ser lembrados.",
+    imagem: "/imagens/karen maquiagem 2.jpeg",
+    servicos: [
+      {
+        nome: "Maquiagem",
+        tempo: "1h45",
+        preco: "R$ 150",
+      },
+    ],
+  },
 ];
 
 export default function Servicos() {
   return (
     <main className="min-h-screen bg-black text-white">
-
       {/* NAVBAR */}
-      <header className="fixed top-0 z-50 w-full border-b border-[#c9a06a]/20 bg-black/90 backdrop-blur-md">
+      <header className="fixed top-0 z-50 w-full border-b border-[#C98A8A]/20 bg-black/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-
           <Link href="/" className="group">
             <div className="text-xl font-light tracking-[0.25em] text-[#C98A8A]">
               KAREN SALLA
@@ -158,7 +114,6 @@ export default function Servicos() {
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
-
             <Link
               href="/"
               className="text-sm text-white/80 transition hover:text-[#C98A8A]"
@@ -175,7 +130,7 @@ export default function Servicos() {
 
             <Link
               href="/servicos"
-              className="text-sm text-white/80 transition hover:text-[#C98A8A]"
+              className="text-sm text-[#C98A8A]"
             >
               Serviços
             </Link>
@@ -193,7 +148,6 @@ export default function Servicos() {
             >
               Contato
             </Link>
-
           </nav>
 
           <Link
@@ -202,17 +156,20 @@ export default function Servicos() {
           >
             AGENDAR
           </Link>
-
         </div>
       </header>
 
-
-      {/* HERO DA PÁGINA */}
+      {/* HERO */}
       <section className="relative overflow-hidden px-6 pb-24 pt-44">
-
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(216,180,119,0.10),transparent_35%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(201,138,138,0.10),transparent_35%)]" />
 
         <div className="relative mx-auto max-w-5xl text-center">
+          <Link
+            href="/"
+            className="mb-10 inline-flex items-center gap-2 text-xs tracking-[0.2em] text-white/40 transition hover:text-[#C98A8A]"
+          >
+            ← VOLTAR PARA INÍCIO
+          </Link>
 
           <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
             KAREN SALLA STUDIO
@@ -230,31 +187,23 @@ export default function Servicos() {
             Cada atendimento é pensado para respeitar sua beleza,
             sua personalidade e o resultado que você deseja.
           </p>
-
         </div>
-
       </section>
 
-
-      {/* CATEGORIAS */}
+      {/* SERVIÇOS */}
       <section className="px-6 pb-32">
-
-        <div className="mx-auto max-w-7xl space-y-28">
-
+        <div className="mx-auto max-w-7xl space-y-32">
           {categorias.map((categoria, index) => (
-
             <section key={categoria.titulo}>
-
               {/* CABEÇALHO DA CATEGORIA */}
               <div
                 className={`grid items-center gap-12 md:grid-cols-2 ${
-                  index % 2 !== 0 ? "md:[&>*:first-child]:order-2" : ""
+                  index % 2 !== 0
+                    ? "md:[&>*:first-child]:order-2"
+                    : ""
                 }`}
               >
-
-                {/* TEXTO */}
                 <div>
-
                   <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
                     {categoria.numero}
                   </p>
@@ -268,13 +217,10 @@ export default function Servicos() {
                   </p>
 
                   <div className="mt-8 h-px w-20 bg-[#C98A8A]/60" />
-
                 </div>
 
-
                 {/* FOTO DO TRABALHO */}
-                <div className="relative h-[400px] overflow-hidden bg-[#15110d]">
-
+                <div className="relative h-[360px] overflow-hidden bg-[#15110d] md:h-[430px]">
                   <Image
                     src={categoria.imagem}
                     alt={`Trabalho de ${categoria.titulo} - Karen Salla Studio`}
@@ -284,24 +230,17 @@ export default function Servicos() {
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-
                 </div>
-
               </div>
 
-
-              {/* LISTA DOS SERVIÇOS */}
+              {/* LISTA DE SERVIÇOS */}
               <div className="mt-12 border-y border-white/10">
-
-                {categoria.servicos.map((servico) => (
-
+                {categoria.servicos.map((servico, servicoIndex) => (
                   <div
-                    key={servico.nome}
-                    className="group flex flex-col gap-4 border-b border-white/10 px-2 py-6 transition hover:bg-[#0b0b0b] sm:flex-row sm:items-center sm:justify-between"
+                    key={`${categoria.titulo}-${servico.nome}-${servicoIndex}`}
+                    className="group flex flex-col gap-4 border-b border-white/10 px-2 py-6 transition last:border-b-0 hover:bg-[#0b0b0b] sm:flex-row sm:items-center sm:justify-between"
                   >
-
                     <div>
-
                       <h3 className="text-base font-light tracking-wide transition group-hover:text-[#C98A8A]">
                         {servico.nome}
                       </h3>
@@ -309,12 +248,9 @@ export default function Servicos() {
                       <p className="mt-2 text-xs text-white/35">
                         Duração aproximada: {servico.tempo}
                       </p>
-
                     </div>
 
-
                     <div className="flex items-center justify-between gap-6 sm:justify-end">
-
                       <span className="text-lg font-light text-[#C98A8A]">
                         {servico.preco}
                       </span>
@@ -325,52 +261,36 @@ export default function Servicos() {
                       >
                         Agendar
                       </Link>
-
                     </div>
-
                   </div>
-
                 ))}
-
               </div>
-
             </section>
-
           ))}
-
         </div>
-
       </section>
-
 
       {/* OBSERVAÇÃO */}
       <section className="border-y border-white/10 bg-[#0b0b0b] px-6 py-20">
-
         <div className="mx-auto max-w-3xl text-center">
-
           <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
             IMPORTANTE
           </p>
 
           <p className="mt-6 text-sm leading-8 text-white/45">
-            Alguns procedimentos podem ter duração e valor alterados de
-            acordo com o comprimento, volume e necessidade dos fios.
-            Em caso de dúvida, entre em contato para confirmar os detalhes
-            antes do atendimento.
+            Alguns procedimentos podem ter duração e valor alterados
+            de acordo com o comprimento, volume e necessidade dos fios.
+            Em caso de dúvida, entre em contato para confirmar os
+            detalhes antes do atendimento.
           </p>
-
         </div>
-
       </section>
-
 
       {/* CTA */}
       <section className="relative overflow-hidden bg-[#100d09] px-6 py-32">
-
         <div className="absolute left-1/2 top-1/2 h-[450px] w-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C98A8A]/5 blur-3xl" />
 
         <div className="relative mx-auto max-w-4xl text-center">
-
           <p className="text-xs tracking-[0.4em] text-[#C98A8A]">
             SEU MOMENTO
           </p>
@@ -394,43 +314,42 @@ export default function Servicos() {
             Agendar meu horário
           </Link>
 
+          <div className="mt-6">
+            <Link
+              href="/"
+              className="text-xs tracking-[0.15em] text-white/40 transition hover:text-[#C98A8A]"
+            >
+              ← Voltar para a página inicial
+            </Link>
+          </div>
         </div>
-
       </section>
-
 
       {/* FOOTER */}
       <footer className="border-t border-white/10 bg-black px-6 py-16">
-
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-3">
-
-          {/* MARCA */}
           <div>
+            <Link href="/">
+              <div className="text-xl font-light tracking-[0.25em] text-[#C98A8A]">
+                KAREN SALLA
+              </div>
 
-            <div className="text-xl font-light tracking-[0.25em] text-[#C98A8A]">
-              KAREN SALLA
-            </div>
-
-            <p className="mt-2 text-[9px] tracking-[0.35em] text-white/40">
-              DESIGNER
-            </p>
+              <p className="mt-2 text-[9px] tracking-[0.35em] text-white/40">
+                DESIGNER
+              </p>
+            </Link>
 
             <p className="mt-6 max-w-sm text-sm leading-7 text-white/40">
               Beleza, cuidado e momentos especiais em cada atendimento.
             </p>
-
           </div>
 
-
-          {/* NAVEGAÇÃO */}
           <div>
-
             <p className="text-xs tracking-[0.3em] text-[#C98A8A]">
               NAVEGAÇÃO
             </p>
 
             <div className="mt-6 flex flex-col gap-3 text-sm text-white/50">
-
               <Link
                 href="/"
                 className="transition hover:text-[#C98A8A]"
@@ -458,15 +377,10 @@ export default function Servicos() {
               >
                 Agendamento
               </Link>
-
             </div>
-
           </div>
 
-
-          {/* AGENDAMENTO */}
           <div>
-
             <p className="text-xs tracking-[0.3em] text-[#C98A8A]">
               AGENDAMENTO
             </p>
@@ -481,23 +395,16 @@ export default function Servicos() {
             >
               Agendar horário →
             </Link>
-
           </div>
-
         </div>
-
 
         <div className="mx-auto mt-16 max-w-7xl border-t border-white/10 pt-8">
-
           <p className="text-center text-xs text-white/25">
-            © {new Date().getFullYear()} Karen Salla Studio. Todos os
-            direitos reservados.
+            © {new Date().getFullYear()} Karen Salla Studio.
+            Todos os direitos reservados.
           </p>
-
         </div>
-
       </footer>
-
     </main>
   );
 }
