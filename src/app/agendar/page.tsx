@@ -280,7 +280,7 @@ export default function Agendar() {
             href="/"
             className="text-xl font-semibold tracking-[0.25em] text-[#d8a0a8]"
           >
-            KAREN SALLA DESIGNER
+            Karen Salla Studio
           </a>
 
           <nav className="hidden gap-8 text-sm md:flex">
@@ -862,7 +862,7 @@ export default function Agendar() {
             href="/"
             className="text-lg tracking-[0.2em] text-[#d8a0a8]"
           >
-            KAREN SALLA DESIGNER
+            Karen Salla Studio
           </a>
 
           <p className="text-sm text-zinc-500">
