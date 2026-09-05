@@ -200,6 +200,7 @@ export default function Agendar() {
   const [selectedTime, setSelectedTime] = useState("");
   const [name, setName] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [cancelToken, setCancelToken] = useState("");
 
   const [confirmed, setConfirmed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -573,6 +574,8 @@ export default function Agendar() {
         return;
       }
 
+      const novoCancelToken = crypto.randomUUID();
+
       const { error } = await supabase
         .from("agendamentos")
         .insert({
@@ -584,6 +587,7 @@ export default function Agendar() {
           valor_total: totalPrice,
           duracao_total: totalDurationMinutes,
           status: "pendente",
+          cancel_token: novoCancelToken,
         });
 
       if (error) {
@@ -596,6 +600,7 @@ export default function Agendar() {
         return;
       }
 
+      setCancelToken(novoCancelToken);
       setConfirmed(true);
     } catch (error) {
       console.error("ERRO:", error);
@@ -1147,6 +1152,15 @@ export default function Agendar() {
                 R$ {totalPrice.toFixed(2).replace(".", ",")}
               </p>
             </div>
+
+            {cancelToken && (
+              <a
+                href={`/api/agendamento/cancelar?token=${encodeURIComponent(cancelToken)}`}
+                className="mt-4 block w-full rounded-full border border-red-900/60 px-6 py-3 text-red-300 transition hover:bg-red-950/30"
+              >
+                Cancelar este agendamento
+              </a>
+            )}
 
             <button
               type="button"

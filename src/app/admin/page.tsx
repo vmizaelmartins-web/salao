@@ -23,6 +23,7 @@ type Agendamento = {
   status: Status;
   observacoes: string | null;
   criado_em: string;
+  cancel_token: string | null;
 };
 
 type Bloqueio = {
@@ -379,6 +380,34 @@ export default function AdminPage() {
           : agendamento
       )
     );
+
+    if (novoStatus === "confirmado") {
+      try {
+        const resposta = await fetch("/api/whatsapp/notificar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            agendamentoId: id,
+            tipo: "confirmacao",
+          }),
+        });
+
+        if (!resposta.ok) {
+          const resultado = await resposta.json().catch(() => null);
+          console.error("Falha ao enviar WhatsApp:", resultado);
+          setErro(
+            "Agendamento confirmado, mas não foi possível enviar a notificação pelo WhatsApp. Verifique a configuração do WhatsApp."
+          );
+        }
+      } catch (erroWhatsApp) {
+        console.error("Erro ao notificar WhatsApp:", erroWhatsApp);
+        setErro(
+          "Agendamento confirmado, mas a notificação pelo WhatsApp não foi enviada."
+        );
+      }
+    }
 
     setAtualizandoId(null);
   }
